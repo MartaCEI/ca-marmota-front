@@ -4,7 +4,7 @@ export const Header = () => {
     return (
         <header className="Header">
             <nav className="Header-nav">
-                <NavLink className="Header-a" to="/"><h1 className="Header-h1">Cal Marmota</h1></NavLink>
+                <NavLink className="Header-a" to="/"><h1 className="Header-h1">Ca Marmota</h1></NavLink>
                 <ul className="Header-ul">
                     <li>
                         <NavLink className="Header-a" to={"/"}>Home</NavLink>

@@ -30,10 +30,10 @@ Crear carpetas pages, components, hooks, lib, css, lib/routes.
 - [x] Crear Layout (Header + Outlet + Footer)
 - [x] Configurar Rutas de React-Router-Dom lib/routes/routes.jsx
 - [x] Configurar main.jsx con React-Router-Dom <RouterProvider router={router} />
-- [] Mock User (en lib/constants.js) para pruebas. 
-- [] Formulario de Login - handleLogin()
-- [] Formulario de Registro - handleRegistro()
-- [] Botones de Login + Registro (<Button>)
+- [x] Mock User (en public/constants.json) para pruebas.
+- [x] Formulario de Login - handleLogin()
+- [x] Formulario de Registro - handleRegistro()
+- [x] Botones de Login + Registro (<Button>)
 - [] Header condicional si existe user, botón Logout
 - [] Craemos un contexto utilizando useContext para manejar el estado de autenticación y su hook personalizado `hooks/useUser.jsx`
 - [] Simulamos guardar datos de usuario en LocalStorage
@@ -52,19 +52,19 @@ bun i react-router-dom
 
 Nuestro Back tendrá una API Rest con rutas para Auth y Usuarios. También poseerá un middleware para proteger rutas privadas.
 
-- [x] Crear Back con Express y dependencias (cors, nodemon, dotenv, mongoose)
-- [x] Instalar dependencias de Auth (bcrypt, jsonwebtoken)
-- [x] Crear variables de entorno
-- [x] Archivo de config.js
-- [x] Crear Rutas de Auth (/registro, /login, /users)
-- [x] Crear una ruta protegida (/admin)
-- [x] Hash con Bcrypt
-- [x] JWT con JsonWebToken para protección de rutas privadas
-- [x] Crear middleware auth.js que devuelve true siempre
-- [ ] Esquemas de Mongoose para usuarios (nombre, email, contraseña)
-- [ ] Conexión a MongoDB Atlas
-- [ ] Testing
-- [ ] Upload de Archivos (Multer)
+- [] Crear Back con Express y dependencias (cors, nodemon, dotenv, mongoose)
+- [] Instalar dependencias de Auth (bcrypt, jsonwebtoken)
+- [] Crear variables de entorno
+- [] Archivo de config.js
+- [] Crear Rutas de Auth (/registro, /login, /users)
+- [] Crear una ruta protegida (/admin)
+- [] Hash con Bcrypt
+- [] JWT con JsonWebToken para protección de rutas privadas
+- [] Crear middleware auth.js que devuelve true siempre
+- [] Esquemas de Mongoose para usuarios (nombre, email, contraseña)
+- [] Conexión a MongoDB Atlas
+- [] Testing
+- [] Upload de Archivos (Multer)
 
 
 ```bash

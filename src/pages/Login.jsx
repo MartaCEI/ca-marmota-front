@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-
-
 const Login = () => {
     const [formData, setFormData] = useState({
         username: "",   
@@ -24,23 +22,26 @@ const Login = () => {
             <form className="Register-form" onSubmit={handleSubmit}>
 
                 <div className="Register-div">
-                <label className="Register-label" htmlFor="name">Email:</label>
+                <label className="Register-label" htmlFor="username">Email:</label>
                 <input
                     className="Login-input"
                     type="email"
+                    id="username"
                     name="username"
                     placeholder="Correo electrónico"
                     value={formData.username}
                     onChange={handleChange}
                     required
+                    autocomplete="username"
                 />
                 </div>
 
                 <div className="Register-div">
-                <label className="Register-label" htmlFor="username">Contraseña:</label>
+                <label className="Register-label" htmlFor="password">Contraseña:</label>
                 <input
                     className="Login-input"
                     type="password"
+                    id="password"
                     name="password"
                     placeholder="Contraseña"
                     value={formData.password}
@@ -51,7 +52,7 @@ const Login = () => {
                 <input className="Register-btn" type="submit"/>
             </form>
             <p>No tienes cuenta</p>
-            <Link to={"register"} className="Register-btn">Regístrate</Link>
+            <Link to={"/registro"} className="Register-btn">Regístrate</Link>
         </div>
     );
 };

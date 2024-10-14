@@ -40,8 +40,8 @@ export const router = createBrowserRouter (
                     path: "login",
                     element: <Login />
                 },
-                { 
-                    path: "rogistro",
+                {
+                    path: "/registro",
                     element: <Register />
                 }
             ]

@@ -5,6 +5,7 @@ import { router } from '@/lib/routes/routes'
 import '@/css/index.css'
 import '@/css/header.css'
 import '@/css/Register.css'
+import '@/css/sections.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
