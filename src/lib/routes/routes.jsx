@@ -21,23 +21,23 @@ export const router = createBrowserRouter (
                     element: <Home />
                 },
                 { 
-                    path: "admin",
+                    path: "/admin",
                     element: <Admin />
                 },
                 { 
-                    path: "servicios",
+                    path: "/servicios",
                     element: <Services />
                 },
                 { 
-                    path: "habitaciones",
+                    path: "/habitaciones",
                     element: <Rooms />
                 },
                 {
-                    path: "about",
+                    path: "/about",
                     element: <About />
                 },
                 {
-                    path: "login",
+                    path: "/login",
                     element: <Login />
                 },
                 {
