@@ -11,37 +11,20 @@ const Login = () => {
     });
     const [error, setError] = useState(null); // Mensajes de error del formulario
 
-    // uso de mi custom hook useUser
-    const { login, user } = useUser();
-    // Navigate me permite ir a cualquier sección usando JS
     const navigate = useNavigate();
 
-    // si entran a /login y ya están logueados, los redirigimos a /admin
-    useEffect(() => {
-        if (user) { navigate('/'); }
-    }, [user, navigate]);
+    const {login} = useUser();
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        login(formData)
+        navigate("/"); // me voy al home
+    };
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        setFormData(prevData => ({
-            ...prevData,
-            [name]: value
-        }));
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const errorMessage = await login(formData);
-        if (errorMessage) {
-            setError(errorMessage);
-        } else {
-            setError(null);
-            // Aquí puedes restablecer el formulario
-            setFormData({ username: "", password: "" }); // Resetea el formulario
-        }
-    };
+        const {name, value} = e.target;
+        setFormData({ ...formData, [name]: value });
+    }
 
     return (
         <div className="Register-container">
@@ -76,7 +59,7 @@ const Login = () => {
                         required
                     />
                 </div>
-                <Button type="submit">Login</Button>
+                <input className="Login-btn" type="submit"/>
             </form>
             <p>--- No tienes cuenta ----</p>
             <Link to={"/registro"} className="Register-btn">Regístrate</Link>

@@ -8,6 +8,7 @@ import Rooms from "@/pages/Rooms";
 import About from "@/pages/About";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
+import { PrivateRoute } from "@/components/PrivateRoute";
 
 export const router = createBrowserRouter (
     [
@@ -30,7 +31,7 @@ export const router = createBrowserRouter (
                 },
                 { 
                     path: "/habitaciones",
-                    element: <Rooms />
+                    element: <PrivateRoute><Rooms /></PrivateRoute> 
                 },
                 {
                     path: "/about",
