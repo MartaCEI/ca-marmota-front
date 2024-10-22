@@ -1,23 +1,32 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '@/hooks/useUser';
-import { Button } from '@/components/Button';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
+    const {login} = useUser();
+
     const [formData, setFormData] = useState({
         username: "",
-        password: ""
+        password: "",
+        // Estos son de prueba (tiene que traerlo de la bases de datos)
+        image: 'https://picsum.photos/200',
+        name: "Marta",
+        isAdmin: true
     });
-    const [error, setError] = useState(null); // Mensajes de error del formulario
+    const [canSubmit, setCanSubmit] = useState(false);
 
-    const navigate = useNavigate();
+    useEffect(() => {
+        setCanSubmit(formData.username && formData.password);
+    }, [formData]);
 
-    const {login} = useUser();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         login(formData)
+        // if user && user.isAdmin llevame a admin, sino, al home
+        // navigate(user.isAdmin ? "/admin" : "/");
         navigate("/"); // me voy al home
     };
 
@@ -26,11 +35,11 @@ const Login = () => {
         setFormData({ ...formData, [name]: value });
     }
 
+    // si existe un user llevame a admin, sino al home (antes del return)
     return (
         <div className="Register-container">
             <h1 className="Register-h1">Login</h1>
             <form className="Register-form" onSubmit={handleSubmit}>
-            {error && <p className="text-red-500">{error}</p>}
                 <div className="Register-div">
                     <label className="Register-label" htmlFor="username">Email:</label> 
                     <input
@@ -59,10 +68,14 @@ const Login = () => {
                         required
                     />
                 </div>
-                <input className="Login-btn" type="submit"/>
+                {canSubmit ? <button className="Login-btn" type="submit">Login</button>
+                : <button className="Login-btn" type="submit" disabled>Login</button>}
+
             </form>
+            <pre>{JSON.stringify(formData, null, 2)}</pre>
+            
             <p>--- No tienes cuenta ----</p>
-            <Link to={"/registro"} className="Register-btn">Regístrate</Link>
+            <Link to={"/register"} className="Register-btn">Regístrate</Link>
         </div>
     );
 };

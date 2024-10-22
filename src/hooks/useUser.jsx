@@ -7,7 +7,7 @@ const UserContext = createContext();
 export function UserProvider({children}) {
     const [user, setUser] = useState(null);
 
-    const {VITE_API_URL, VITE_STATIC_URL} = import.meta.env;
+    const {VITE_API_URL, VITE_BACKEND_URL} = import.meta.env;
 
     // Ver si ya estoy logedin (localStorage cache)
     useEffect(() => {
@@ -19,26 +19,33 @@ export function UserProvider({children}) {
 
     // Función login
     const login = async (userData) => {
-        // Fetch para mandar al backend
+        console.log("Login hook");
+        console.log("Antes del Fetch: ", userData);
+        
+        // Llamamos al backend con el fetch
         const response = await fetch(`${VITE_API_URL}/login`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
+                // "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(userData)
         });
-        // El back en me devuelve mi usuario complete menos la clave.
+
+        // El back en me devuelve mi usuario completo menos la clave.
+        // Response de mi consulta al back. 
         const responseData = await response.json();
 
         if(!response.ok) {
-            console.log("NO FURULA")
+            console.log("NO FURULA al traer datos del back")
         }
 
         localStorage.setItem("user", JSON.stringify(responseData));
 
-        console.log(responseData);
+        console.log("Despues del Fetch: ", responseData);
+
         // Un avez con los datos los guardo en setUser
-        setUser(userData);
+        setUser(responseData);
 
         // // Guardamos el JWT token en LocalStorage
         // localStorage.setItem('token', responseData.token);
@@ -48,6 +55,8 @@ export function UserProvider({children}) {
 
     // Función register
     const register = async (userData) => {
+        console.log("Register hook");
+        console.log("Antes del Fetch: ", userData);
 
         const response = await fetch(`${VITE_API_URL}/register`, {
             method: "POST",
@@ -56,7 +65,7 @@ export function UserProvider({children}) {
             },
             body: JSON.stringify(userData)
         });
-        // El back en me devuelve mi usuario complete menos la clave.
+
         const responseData = await response.json();
 
         if(!response.ok) {
@@ -68,16 +77,17 @@ export function UserProvider({children}) {
         // Guardamos el JWT token en LocalStorage
         // localStorage.setItem('token', responseData.token);
 
-        console.log(responseData);
+        console.log("Despues del Fetch: ", responseData);
         // Un avez con los datos los guardo en setUser
-        setUser(userData);
+        setUser(responseData);
     };
 
     // Función logout
     const logout = () => {
-        setUser(null);
         localStorage.removeItem("user")
         // localStorage.removeItem('token');
+        setUser(null);
+        console.log("User logged out");
     };
 
     return (

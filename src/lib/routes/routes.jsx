@@ -42,7 +42,7 @@ export const router = createBrowserRouter (
                     element: <Login />
                 },
                 {
-                    path: "/registro",
+                    path: "/register",
                     element: <Register />
                 }
             ]

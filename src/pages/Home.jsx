@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { HomeSections } from "@/components/HomeSections";
+import { HomeSections } from "@/components/HomeSections"; 
 
 const Home = () => {
     const [info, setInfo] = useState([]);
@@ -10,7 +10,7 @@ const Home = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch("/constants.json");
+            const response = await fetch("/mock.json");
             const data = await response.json();
             setInfo(data.MockHome);
             console.log(data.MockHome);

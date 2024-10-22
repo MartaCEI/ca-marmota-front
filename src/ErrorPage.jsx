@@ -6,7 +6,7 @@ const ErrorPage = () => {
     console.log(error);
 
     return (
-        <div>
+        <div className="text-center m-auto">
             Ooops... Hay un error
             <p>
                 { error?.estatusText || error?.message || "Página no encontrada."} 

@@ -1,8 +1,8 @@
 export const Footer = () => {
     return (
         <>
-            <footer className="text-2xl font-bold mb-4">
-                <h1>Footer</h1>
+            <footer className="bg-grey-800 text-white justify-center flex">
+                <h1>Soy el Footer</h1>
             </footer>
         </>
     );

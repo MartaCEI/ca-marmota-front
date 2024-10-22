@@ -1,6 +1,6 @@
 import React from 'react';
 import { useUser } from '@/hooks/useUser'
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
     const { user, logout } = useUser();

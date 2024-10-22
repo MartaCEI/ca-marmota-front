@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '@/hooks/useUser';
 
 const Register = () => {
+    const navigate = useNavigate();
+    const {register} = useUser();
+    // Estado para habilitar el botón de registro usando un booleano. 
+    const [canSubmit, setCanSubmit] = useState(false);
     // Información para probar la app
     const [formData, setFormData] = useState({
         name: "",
@@ -13,28 +17,23 @@ const Register = () => {
         image: 'https://picsum.photos/200'
     });
 
-    const [error, setError] = useState(null); // Mensajes de error del formulario
+    // Cada vez que cambia formData se ejecuta el useEffect. Cuando todas son verdaderas, se habilita el botón de registro.
+    useEffect(() => {
+        setCanSubmit(formData.name && formData.username &&
+            formData.password && formData.cPassword &&
+            formData.tyc && formData.password === formData.cPassword);
+    }, [formData]);
 
-    const navigate = useNavigate();
-    const {register} = useUser();
 
     const handleChange = (e) => {
         const {name, value, type, checked} = e.target;
         setFormData({ 
             ...formData, 
             [name]: type==="checkbox" ? checked : value }); 
-            // En caso de que el type sea checkbox, me miras si esta checked o no,
-            // sino, mirame el valor del value. 
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Verificar si las contraseñas coinciden
-        if (formData.password !== formData.cPassword) {
-            setError("Las contraseñas no coinciden");
-            return;
-        }
         register(formData);
         navigate("/");
     }
@@ -113,9 +112,8 @@ const Register = () => {
                     <label className="Register-label" htmlFor="tyc">Acepto los términos y condiciones</label>
                 </div>
 
-                {error && <p className="Register-h1" style={{color:"red"}}>{error}</p>}
-
-                <input className="Register-btn" type="submit" />
+                {canSubmit ? <input type="submit" value="Registro" />
+                    : <button disabled>Registro</button>}
 
                 <pre>{JSON.stringify(formData, null, 2)}</pre>
             </form>
