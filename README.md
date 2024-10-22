@@ -8,7 +8,7 @@ Sistenma de reservas de un a casa rural
  3. Esto nos ayuda a entender mejor las necesidades de nuestros clientes, además de evitar que nos abrumeos con conceptos del backend o base de datos.
 
 
-## Front
+# Front
 
 Nuestro Front tendrá:
 Páginas: Home Pública, About Pública, Abitaciones, Servicios, Registro, Login, ADMIN Privada para ver las reservas.
@@ -45,26 +45,6 @@ Crear carpetas pages, components, hooks, lib, css, lib/routes.
 - [ ] Upload de Archivos
 
 
-## Back
-
-Nuestro Back tendrá una API Rest con rutas para Auth y Usuarios. También poseerá un middleware para proteger rutas privadas.
-
-- [] Crear Back con Express y dependencias (cors, nodemon, dotenv, mongoose)
-- [] Instalar dependencias de Auth (bcrypt, jsonwebtoken)
-- [] Crear variables de entorno
-- [] Archivo de config.js
-- [] Crear Rutas de Auth (/registro, /login, /users)
-- [] Crear una ruta protegida (/admin)
-- [] Hash con Bcrypt
-- [] JWT con JsonWebToken para protección de rutas privadas
-- [] Crear middleware auth.js que devuelve true siempre
-- [] Esquemas de Mongoose para usuarios (nombre, email, contraseña)
-- [] Conexión a MongoDB Atlas
-- [] Testing
-- [] Upload de Archivos (Multer)
-
-
-# Frontend
 1. Crear Front con Vite-React + React-Router-Dom
 ```bash	
 npm init vite@latest
@@ -660,24 +640,3 @@ const register = async (userData) => {
     setUser(responseData);
 
     ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```bash
-bun init
-bun i express mongoose dotenv cors
-bun i nodemon --dev
-bun i bcrypt jsonwebtoken
-```
-
