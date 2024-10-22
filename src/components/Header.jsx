@@ -15,11 +15,11 @@ export const Header = () => {
                     <li>
                         <NavLink className="Header-a" to={"/"}>Home</NavLink>
                     </li>
-                    {(user && user.isAdmin) ? (
+                    {/* {(user && user.isAdmin) ? ( */}
                         <li>
                             <NavLink className="Header-a" to={"/admin"}>Admin</NavLink>
                         </li>
-                    ) : (
+                    {/* ) : ( */}
                         <>
                             <li>
                                 <NavLink className="Header-a" to={"/servicios"}>Servicos</NavLink>
@@ -28,7 +28,7 @@ export const Header = () => {
                                 <NavLink className="Header-a" to={"/habitaciones"}>Habitaciones</NavLink>
                             </li>
                         </>
-                    )}
+                    {/* )} */}
 
                     {
                         !user ? (  // If no user is logged in

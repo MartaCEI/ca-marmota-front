@@ -1,19 +1,15 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import { useUser } from '@/hooks/useUser';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     const {login} = useUser();
 
     const [formData, setFormData] = useState({
         username: "",
         password: "",
-        // Estos son de prueba (tiene que traerlo de la bases de datos)
-        image: 'https://picsum.photos/200',
-        name: "Marta",
-        isAdmin: true
     });
     const [canSubmit, setCanSubmit] = useState(false);
 
@@ -27,7 +23,7 @@ const Login = () => {
         login(formData)
         // if user && user.isAdmin llevame a admin, sino, al home
         // navigate(user.isAdmin ? "/admin" : "/");
-        navigate("/"); // me voy al home
+        //navigate("/"); // me voy al home
     };
 
     const handleChange = (e) => {
@@ -51,7 +47,7 @@ const Login = () => {
                         value={formData.username}
                         onChange={handleChange}
                         required
-                        autocomplete="username"
+                        autoComplete="username"
                     />
                 </div>
 
