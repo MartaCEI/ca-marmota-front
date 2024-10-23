@@ -9,6 +9,7 @@ import About from "@/pages/About";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import { PrivateRoute } from "@/components/PrivateRoute";
+import Booking from "../../pages/Booking";
 
 export const router = createBrowserRouter (
     [
@@ -29,9 +30,13 @@ export const router = createBrowserRouter (
                     path: "/servicios",
                     element: <Services />
                 },
+                {
+                    path:"/booking/:roomId/:checkIn/:checkOut", 
+                    element: <Booking />
+                },
                 { 
                     path: "/habitaciones",
-                    element: <PrivateRoute><Rooms /></PrivateRoute> 
+                    element: <Rooms />
                 },
                 {
                     path: "/about",
