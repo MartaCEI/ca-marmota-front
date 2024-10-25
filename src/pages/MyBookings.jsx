@@ -6,20 +6,20 @@ const MyBookings = () => {
     const { id } = useParams();
     const [bookings, setBookings] = useState([]);
     const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
+
 
     useEffect(() => {
         getBookingsById();
-    }, [id]);
+    }, []);
 
     const { VITE_API_URL } = import.meta.env;
 
     const getBookingsById = async () => {
-        setLoading(true); // Iniciar el estado de carga
         try {
             const token = localStorage.getItem('token');
             const response = await fetch(`${VITE_API_URL}/bookings/${id}`, {
                 headers: {
+                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
             });
@@ -31,16 +31,14 @@ const MyBookings = () => {
         } catch (error) {
             setError('Error al cargar las reservas');
             console.error('Error:', error);
-        } finally {
-            setLoading(false); // Finalizar el estado de carga
         }
+
     };
 
     const cancelBooking = async (bookingId) => {
-        const confirmCancel = window.confirm("¿Estás seguro de que deseas cancelar esta reserva?");
-        if (!confirmCancel) return;
+        // const confirmCancel = window.confirm("¿Estás seguro de que deseas cancelar esta reserva?");
+        // if (!confirmCancel) return;
 
-        setLoading(true); // Iniciar el estado de carga
         try {
             const token = localStorage.getItem('token');
             const response = await fetch(`${VITE_API_URL}/bookings/${bookingId}`, {
@@ -60,16 +58,13 @@ const MyBookings = () => {
         } catch (error) {
             setError('Error al cancelar la reserva');
             console.error('Error:', error);
-        } finally {
-            setLoading(false); // Finalizar el estado de carga
-        }
+        } 
     };
 
     return (
         <>
             <h1>Mis Reservas</h1>
-            {loading && <p>Cargando reservas...</p>} {/* Mensaje de carga */}
-            {error && <p className="text-red-500">{error}</p>} {/* Mensaje de error */}
+            {/* {error && <p className="text-red-500">{error}</p>} Mensaje de error */}
             {bookings.length > 0 ? (
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white border border-gray-500">
@@ -96,8 +91,7 @@ const MyBookings = () => {
                                     <td className="py-2 px-4">{totalNights}</td>
                                     <td className="py-2 px-4">{transactionId}</td>
                                     <td className="py-2 px-4">
-                                        <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={cancelBooking({_id})}>Cancelar</button>
-                                        console.log({_id});
+                                        <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => cancelBooking(_id)}>Cancelar</button>
                                     </td>
                                 </tr>
                             ))}
