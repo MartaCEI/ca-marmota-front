@@ -72,7 +72,7 @@ const Admin = () => {
             });
             if (response.ok) {
                 alert('Usuario eliminado correctamente');
-                fetchUsers(); // Recargar lista de usuarios
+                getUsers(); // Recargar lista de usuarios
             } else {
                 alert('Error al eliminar el usuario');
             }
