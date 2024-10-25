@@ -22,7 +22,9 @@ function Rooms() {
 
     async function filterRooms() {
         if (!dates.checkIn || !dates.checkOut) return; // Asegurarse de que las fechas estén definidas
-
+    
+        console.log('Fechas enviadas:', dates); // Verifica las fechas en la consola
+    
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/rooms/availability`, {
                 method: 'POST',
@@ -31,8 +33,9 @@ function Rooms() {
                 },
                 body: JSON.stringify(dates),
             });
-
+    
             const data = await response.json();
+            console.log('Habitaciones filtradas:', data); // Verifica la respuesta
             setFilteredRooms(data); // Actualiza con habitaciones disponibles
         } catch (error) {
             console.error('Error al filtrar las habitaciones:', error);

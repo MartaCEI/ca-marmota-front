@@ -36,8 +36,8 @@ const MyBookings = () => {
     };
 
     const cancelBooking = async (bookingId) => {
-        // const confirmCancel = window.confirm("¿Estás seguro de que deseas cancelar esta reserva?");
-        // if (!confirmCancel) return;
+        const confirmCancel = window.confirm("¿Estás seguro de que deseas cancelar esta reserva?");
+        if (!confirmCancel) return;
 
         try {
             const token = localStorage.getItem('token');
@@ -81,19 +81,21 @@ const MyBookings = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {bookings.map(({ _id, roomId, checkIn, checkOut, totalAmount, totalNights, transactionId }) => (
-                                <tr key={transactionId} className="border-b hover:bg-gray-50">
-                                    <td className="py-2 px-4 border-r">{roomId.roomName}</td>
-                                    <td className="py-2 px-4 border-r">{formatDate(checkIn)}</td>
-                                    <td className="py-2 px-4">{formatDate(checkOut)}</td>
-                                    <td className="py-2 px-4">{roomId.rentPerDay}</td>
-                                    <td className="py-2 px-4">{totalAmount}</td>
-                                    <td className="py-2 px-4">{totalNights}</td>
-                                    <td className="py-2 px-4">{transactionId}</td>
-                                    <td className="py-2 px-4">
-                                        <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => cancelBooking(_id)}>Cancelar</button>
-                                    </td>
-                                </tr>
+                            {bookings.map(({ _id, roomId, checkIn, checkOut, totalAmount, totalNights, transactionId, status }) => (
+                                status === 'cancelled' ? <p className="py-2 px-4">Reserva cancelada</p> : (
+                                    <tr key={transactionId} className="border-b hover:bg-gray-50">
+                                        <td className="py-2 px-4 border-r">{roomId.roomName}</td>
+                                        <td className="py-2 px-4 border-r">{formatDate(checkIn)}</td>
+                                        <td className="py-2 px-4">{formatDate(checkOut)}</td>
+                                        <td className="py-2 px-4">{roomId.rentPerDay}</td>
+                                        <td className="py-2 px-4">{totalAmount}</td>
+                                        <td className="py-2 px-4">{totalNights}</td>
+                                        <td className="py-2 px-4">{transactionId}</td>
+                                        <td className="py-2 px-4">
+                                            <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => cancelBooking(_id)}>Cancelar</button>
+                                        </td>
+                                    </tr>
+                                )
                             ))}
                         </tbody>
                     </table>
