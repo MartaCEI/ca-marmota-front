@@ -5,11 +5,12 @@ import Home from "@/pages/Home";
 import Admin from "@/pages/Admin";
 import Services from "@/pages/Services";
 import Rooms from "@/pages/Rooms";
-import About from "@/pages/About";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import { PrivateRoute } from "@/components/PrivateRoute";
-import Booking from "../../pages/Booking";
+import Booking from "@/pages/Booking";
+import RoomDetails from "@/pages/RoomDetails";
+import MyBookigns from "../../pages/MyBookings";
 
 export const router = createBrowserRouter (
     [
@@ -24,7 +25,7 @@ export const router = createBrowserRouter (
                 },
                 { 
                     path: "/admin",
-                    element: <Admin />
+                    element: <PrivateRoute><Admin /></PrivateRoute>
                 },
                 { 
                     path: "/servicios",
@@ -32,15 +33,19 @@ export const router = createBrowserRouter (
                 },
                 {
                     path:"/booking/:roomId/:checkIn/:checkOut", 
-                    element: <Booking />
+                    element: <PrivateRoute><Booking /></PrivateRoute>
+                },
+                {
+                    path:"/myBookings/:id", 
+                    element: <PrivateRoute><MyBookigns /></PrivateRoute>
                 },
                 { 
-                    path: "/habitaciones",
+                    path: "/rooms",
                     element: <Rooms />
                 },
                 {
-                    path: "/about",
-                    element: <About />
+                    path: "/room/:id",
+                    element: <RoomDetails />
                 },
                 {
                     path: "/login",

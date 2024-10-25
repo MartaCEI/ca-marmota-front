@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '@/hooks/useUser';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-    //const navigate = useNavigate();
-    const {login} = useUser();
+    const navigate = useNavigate();
+    const { login } = useUser();
 
     const [formData, setFormData] = useState({
         username: "",
         password: "",
     });
     const [canSubmit, setCanSubmit] = useState(false);
+    const [error, setError] = useState(null);
+
+
 
     useEffect(() => {
         setCanSubmit(formData.username && formData.password);
@@ -20,14 +23,20 @@ const Login = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        // Llamamos al login y manejamos el resultado
         login(formData)
-        // if user && user.isAdmin llevame a admin, sino, al home
-        // navigate(user.isAdmin ? "/admin" : "/");
-        //navigate("/"); // me voy al home
+            .then((error) => {
+                if (error) {
+                    setError(error); // Si hay un error, lo mostramos
+                } else {
+                    setError(null);  // Limpiamos cualquier error previo
+                    navigate("/");   // Navegamos al home solo si no hay error
+                }
+            });
     };
 
     const handleChange = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     }
 
@@ -37,7 +46,7 @@ const Login = () => {
             <h1 className="Register-h1">Login</h1>
             <form className="Register-form" onSubmit={handleSubmit}>
                 <div className="Register-div">
-                    <label className="Register-label" htmlFor="username">Email:</label> 
+                    <label className="Register-label" htmlFor="username">Email:</label>
                     <input
                         className="Login-input"
                         type="email"
@@ -65,11 +74,13 @@ const Login = () => {
                     />
                 </div>
                 {canSubmit ? <button className="Login-btn" type="submit">Login</button>
-                : <button className="Login-btn" type="submit" disabled>Login</button>}
+                    : <button className="Login-btn-disabled" type="submit" disabled>Login</button>}
 
             </form>
-            <pre>{JSON.stringify(formData, null, 2)}</pre>
-            
+            {error && <p className="Register-error">{error}</p>}
+
+            {/* <pre>{JSON.stringify(formData, null, 2)}</pre> */}
+
             <p>--- No tienes cuenta ----</p>
             <Link to={"/register"} className="Register-btn">Regístrate</Link>
         </div>

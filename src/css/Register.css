@@ -61,3 +61,11 @@
     padding: 0.5rem 1rem;
     cursor: pointer;
 }
+
+.Login-btn-disabled {
+    background-color: #ccc;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: not-allowed;
+}

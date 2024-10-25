@@ -37,7 +37,7 @@ export function UserProvider({ children }) {
             const responseData = await response.json();
 
             if (!response.ok) {
-                console.log("NO FURULA al traer datos del back")
+                return responseData.message || "Error en el servidor";
             }
 
             const usuario = responseData.data;
