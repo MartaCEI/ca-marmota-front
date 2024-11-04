@@ -1,49 +1,54 @@
 import { useState, useEffect } from "react";
 import { HomeSections } from "@/components/HomeSections"; 
-const URL = import.meta.env.VITE_API_URL;
 
 const Home = () => {
-    const [loading, setLoading] = useState(true);
+    const URL = import.meta.env.VITE_API_URL;
     const [error, setError] = useState('');
-    const [info, setInfo] = useState({});
+    const [info, setInfo] = useState([]);
 
-useEffect(() => {
-    fetchData();
-}, []);
+    useEffect(() => {
+        fetchData();
+    }, []);
 
-const fetchData = async () => {
-    setLoading(true);
-    try {
-        const response = await fetch(`${URL}/home`);
-        const objeto = await response.json();
-        if (objeto.status === "error") {
-            setError(`Tuvimos un error: ${objeto.msg}`);
-            return;
+    const fetchData = async () => {
+        try {
+            const response = await fetch(`${URL}/home`);
+            const objeto = await response.json();
+            if (objeto.status === "error") {
+                setError(`Tuvimos un error: ${objeto.msg}`);
+                return;
+            }
+            console.log("Datos recibidos:", objeto.data); // Verifica la estructura aquí
+            setInfo(Array.isArray(objeto.data) ? objeto.data : []); // Asegura que sea un array
+        } catch (error) {
+            if (error.name !== 'AbortError') {
+                console.log("Error al hacer el fetch de los datos:", error);
+                setError("Error al cargar los datos");
+            }
         }
-        setInfo(objeto.data);
-
-    } catch (error) {
-        if (error.name !== 'AbortError') {
-            console.log("Error al hacer el fetch de los datos:", error);
-            setError("Error al cargar los datos");
-        }
-    } finally {
-        setLoading(false);
     }
-}
 
-return (
-    <>
-        <h1>Home</h1>
-        {loading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
-        {!loading && !error && info.map((item, index) => (
-            <section className="Section" key={index}>
-                <HomeSections {...item} />
-            </section>
-        ))}
-    </>
-);
+    return (
+        <>
+            <h1>Home</h1>
+            <h1>Usuarios</h1>
+            <p>Admin admin@mail.com 1111</p>
+            <p>marta marta@gmail.com 1234</p>
+            {error ? (
+                <p>{error}</p>
+            ) : (
+                info.length > 0 ? (
+                    info.map((item, index) => (
+                        <section className="Section" key={index}>
+                            <HomeSections {...item} />
+                        </section>
+                    ))
+                ) : (
+                    <p>No hay datos disponibles.</p>
+                )
+            )}
+        </>
+    );
 }
 
 export default Home;

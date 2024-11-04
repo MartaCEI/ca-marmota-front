@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 import { formatDate } from "../utils/date";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Admin = () => {
-    const { id } = useParams();
+    const URL = import.meta.env.VITE_API_URL;
     const [users, setUsers] = useState([]);
     const [bookings, setBookings] = useState([]);
-    const [cancelados, setCancelados] = useState([]);
+    const [rooms, setRooms] = useState([]);
 
     useEffect(() => {
         getBookings();
         getUsers();
+        getRooms();
     }, []);
 
-    const { VITE_API_URL } = import.meta.env;
 
     const getUsers = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${VITE_API_URL}/users`, {
+            const response = await fetch(`${URL}/users`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -34,7 +34,7 @@ const Admin = () => {
     const getBookings = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${VITE_API_URL}/bookings`, {
+            const response = await fetch(`${URL}/bookings`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -48,26 +48,34 @@ const Admin = () => {
         }
     }
 
+    const getRooms = async () => {
+        try {
+            const response = await fetch(`${URL}/rooms`);
+            const data = await response.json();
+            setRooms(data);
+        } catch (error) {
+            console.error('Error al obtener las habitaciones:', error);
+        }
+    }
+
     const cancelBooking = async (bookingId) => {
         const confirmCancel = window.confirm("¿Estás seguro de que deseas cancelar esta reserva?");
         if (!confirmCancel) return;
-
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${VITE_API_URL}/bookings/${bookingId}`, {
+            const response = await fetch(`${URL}/bookings/${bookingId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
             });
-
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(`Error al cancelar la reserva: ${errorData.message}`);
             }
 
-            getBookingsById();
+            getBookings();
         } catch (error) {
             setError('Error al cancelar la reserva');
             console.error('Error:', error);
@@ -77,7 +85,7 @@ const Admin = () => {
         // Eliminar usuario
         const handleDelete = async (userId) => {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${VITE_API_URL}/users/${userId}`, {
+            const response = await fetch(`${URL}/users/${userId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -85,42 +93,21 @@ const Admin = () => {
             });
             if (response.ok) {
                 alert('Usuario eliminado correctamente');
-                getUsers(); // Recargar lista de usuarios
+                getUsers(); 
             } else {
                 alert('Error al eliminar el usuario');
             }
         };
     
-        // Actualizar usuario (ejemplo simple para actualizar el username)
-        const handleUpdate = async (userId) => {
-            const token = localStorage.getItem('token');
-            const newUsername = prompt('Ingrese el nuevo nombre de usuario:');
-            if (newUsername) {
-                const response = await fetch(`${VITE_API_URL}/users/${userId}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify({ username: newUsername })
-                });
-                if (response.ok) {
-                    alert('Usuario actualizado correctamente');
-                    getUsers(); // Recargar lista de usuarios
-                } else {
-                    alert('Error al actualizar el usuario');
-                }
-            }
-        };
-
         return (
-            <>
-                <h1 className="text-2xl font-bold mb-4">Admin</h1>
-                <small>Sección Privada de Admin</small>
-        
+            <>  <div className="flex justify-between">
+                    <div></div>
+                    <h1 className="text-2xl font-bold mb-4 text-center">Admin</h1>
+                </div>
+                
                 {/* Tabla para los bookings confirmados */}
                 <p className="mb-4"><strong>Lista de Bookings Confirmados</strong></p>
-                {bookings.filter(b => b.status === "booked").length > 0 && (
+                {bookings.filter(b => b.status === "booked").length > 0 ? (
                     <div className="overflow-x-auto">
                         <table className="min-w-full bg-white border border-gray-200">
                             <thead>
@@ -139,7 +126,7 @@ const Admin = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {bookings.filter(b => b.status === "booked").map(({ roomId, userId, checkIn, checkOut, totalAmount, totalNights, transactionId, status }) => (
+                                {bookings.filter(b => b.status === "booked").map(({ _id, roomId, userId, checkIn, checkOut, totalAmount, totalNights, transactionId, status }) => (
                                     <tr key={transactionId} className="border-b hover:bg-gray-50">
                                         <td className="py-2 px-4 border-r">{roomId.roomName}</td>
                                         <td className="py-2 px-4 border-r">{formatDate(checkIn)}</td>
@@ -152,18 +139,20 @@ const Admin = () => {
                                         <td className="py-2 px-4">{transactionId}</td>
                                         <td className="py-2 px-4">{status}</td>
                                         <td className="py-2 px-4">
-                                        <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => cancelBooking(_id)}>Cancelar</button>
+                                            <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => cancelBooking(_id)}>Cancelar</button>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     </div>
+                ) : (
+                    <p className="text-gray-500">No hay bookings confirmados.</p>
                 )}
-        
+
                 {/* Tabla para los bookings cancelados */}
                 <p className="mb-4"><strong>Lista de Bookings Cancelados</strong></p>
-                {bookings.filter(b => b.status === "cancelled").length > 0 && (
+                {bookings.filter(b => b.status === "cancelled").length > 0 ? (
                     <div className="overflow-x-auto">
                         <table className="min-w-full bg-white border border-gray-200">
                             <thead>
@@ -198,9 +187,12 @@ const Admin = () => {
                             </tbody>
                         </table>
                     </div>
+                ) : (
+                    <p className="text-gray-500">No hay bookings cancelados.</p>
                 )}
-            <p className="mb-4">La lista de usuario es solo accesible por <strong>Usuarios Autenticados</strong></p>
-
+        
+            {/* Tabla para los usuarios */}
+            <p className="mb-4"><strong>La lista de usuarios</strong></p>
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white border border-gray-200">
                     <thead>
@@ -218,7 +210,36 @@ const Admin = () => {
                                 <td className="py-2 px-4">{username}</td>
                                 <td className="py-2 px-4">
                                     <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => handleDelete(_id)}>Eliminar</button>
-                                    <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => handleUpdate(_id)}>Actualizar</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            {/* Tabla para lo cuartos donde se hace un fetch a los cusrtos y hay un boton de update.*/}
+            <p className="mb-4"><strong>Rooms list</strong></p>
+            <div className="overflow-x-auto">
+                <table className="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr className="bg-gray-100 border-b">
+                            <th className="py-2 px-4 border-r">Room Name</th>
+                            <th className="py-2 px-4">Description</th>
+                            <th className="py-2 px-4">Rent Per Day</th>
+                            <th className="py-2 px-4">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rooms.map(({ _id, roomName, description, rentPerDay }) => (
+                            <tr key={_id} className="border-b hover:bg-gray-50">
+                                <td className="py-2 px-4 border-r">{roomName}</td>
+                                <td className="py-2 px-4">{description}</td>
+                                <td className="py-2 px-4">{rentPerDay}</td>
+                                <td className="py-2 px-4">
+
+                                {/* Hacer un Pop up con background blur y meter el form como un componente en el Pop up */}
+                                <Link to={`/UpdateRoom/${_id}`}>
+                                    <button className="bg-red-500 text-white px-4 py-2 rounded">Update</button>
+                                </Link>
                                 </td>
                             </tr>
                         ))}

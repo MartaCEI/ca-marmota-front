@@ -3,6 +3,7 @@ import { DatePicker } from 'antd';
 import Room from '../components/Room';
 
 function Rooms() {
+    const URL = import.meta.env.VITE_API_URL;
     const [rooms, setRooms] = useState([]);
     const [filteredRooms, setFilteredRooms] = useState([]);
     const [dates, setDates] = useState({ checkIn: '', checkOut: '' });
@@ -10,7 +11,7 @@ function Rooms() {
     useEffect(() => {
         async function fetchRooms() {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/rooms`);
+                const response = await fetch(`${URL}/rooms`);
                 const data = await response.json();
                 setRooms(data);
             } catch (error) {
