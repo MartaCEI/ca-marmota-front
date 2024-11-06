@@ -12,6 +12,7 @@ import Booking from "@/pages/Booking";
 import RoomDetails from "@/pages/RoomDetails";
 import MyBookigns from "@/pages/MyBookings";
 import UpdateRooms from "@/pages/UpdateRoom";
+import Prueba_popup from "@/pages/Prueba_popup";
 
 export const router = createBrowserRouter (
     [
@@ -59,6 +60,10 @@ export const router = createBrowserRouter (
                 {
                     path: "/register",
                     element: <Register />
+                },  
+                {   // Prueba PopUp
+                    path: "/popup",
+                    element: <Prueba_popup />
                 }
             ]
         }

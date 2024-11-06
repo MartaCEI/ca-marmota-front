@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { formatDate } from "../utils/date";
+import { formatDate } from "@/utils/date";
+import { RoomUpdate } from "@/components/RoomUpdate";
 import { Link } from "react-router-dom";
 
 const Admin = () => {
@@ -7,6 +8,8 @@ const Admin = () => {
     const [users, setUsers] = useState([]);
     const [bookings, setBookings] = useState([]);
     const [rooms, setRooms] = useState([]);
+    const [activeRoomId, setActiveRoomId] = useState(null);
+
 
     useEffect(() => {
         getBookings();
@@ -98,10 +101,19 @@ const Admin = () => {
                 alert('Error al eliminar el usuario');
             }
         };
+
+        const handlePopUp = (id) => {
+            setActiveRoomId(id);
+        };
     
+        const handleClose = () => {
+            setActiveRoomId(null);
+            getRooms();
+        };
+
         return (
             <>  
-                    <h1 className="text-2xl font-bold mb-4 text-center">Admin</h1>
+                <h1 className="text-2xl font-bold mb-4 text-center">Admin</h1>
                 
                 {/* Tabla para los bookings confirmados */}
                 <p className="mb-4"><strong>Lista de Bookings Confirmados</strong></p>
@@ -229,16 +241,17 @@ const Admin = () => {
                                 <td className="py-2 px-4">{description}</td>
                                 <td className="py-2 px-4">{rentPerDay}</td>
                                 <td className="py-2 px-4">
-
-                                {/* Hacer un Pop up con background blur y meter el form como un componente en el Pop up */}
-                                <Link to={`/UpdateRoom/${_id}`}>
-                                    <button className="bg-red-500 text-white px-4 py-2 rounded">Update</button>
-                                </Link>
+                                    <button className="PopUp-btn" onClick={() => handlePopUp(_id)}>Update</button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+
+                <div className={`PopUp ${activeRoomId ? 'active' : ''}`}>
+                    <button className="cerrar" onClick={handleClose}>Cerrar</button>
+                    <RoomUpdate roomId={activeRoomId} onClose={handleClose} />
+                </div>
             </div>
         </>
     );
