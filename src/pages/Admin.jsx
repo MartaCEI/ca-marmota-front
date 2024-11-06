@@ -100,10 +100,8 @@ const Admin = () => {
         };
     
         return (
-            <>  <div className="flex justify-between">
-                    <div></div>
+            <>  
                     <h1 className="text-2xl font-bold mb-4 text-center">Admin</h1>
-                </div>
                 
                 {/* Tabla para los bookings confirmados */}
                 <p className="mb-4"><strong>Lista de Bookings Confirmados</strong></p>
@@ -117,7 +115,6 @@ const Admin = () => {
                                     <th className="py-2 px-4">Checkout</th>
                                     <th className="py-2 px-4">Nombre</th>
                                     <th className="py-2 px-4">Email</th>
-                                    <th className="py-2 px-4">Precio/día</th>
                                     <th className="py-2 px-4">Total</th>
                                     <th className="py-2 px-4">Noches</th>
                                     <th className="py-2 px-4">Transacción</th>
@@ -133,7 +130,6 @@ const Admin = () => {
                                         <td className="py-2 px-4">{formatDate(checkOut)}</td>
                                         <td className="py-2 px-4">{userId ? userId.name : "Usuario eliminado"}</td>
                                         <td className="py-2 px-4">{userId ? userId.username : "Usuario eliminado"}</td>
-                                        <td className="py-2 px-4">{roomId.rentPerDay}</td>
                                         <td className="py-2 px-4">{totalAmount}</td>
                                         <td className="py-2 px-4">{totalNights}</td>
                                         <td className="py-2 px-4">{transactionId}</td>
@@ -162,7 +158,6 @@ const Admin = () => {
                                     <th className="py-2 px-4">Checkout</th>
                                     <th className="py-2 px-4">Nombre</th>
                                     <th className="py-2 px-4">Email</th>
-                                    <th className="py-2 px-4">Precio/día</th>
                                     <th className="py-2 px-4">Total</th>
                                     <th className="py-2 px-4">Noches</th>
                                     <th className="py-2 px-4">Transacción</th>
@@ -177,7 +172,6 @@ const Admin = () => {
                                         <td className="py-2 px-4">{formatDate(checkOut)}</td>
                                         <td className="py-2 px-4">{userId ? userId.name : "Usuario eliminado"}</td>
                                         <td className="py-2 px-4">{userId ? userId.username : "Usuario eliminado"}</td>
-                                        <td className="py-2 px-4">{roomId.rentPerDay}</td>
                                         <td className="py-2 px-4">{totalAmount}</td>
                                         <td className="py-2 px-4">{totalNights}</td>
                                         <td className="py-2 px-4">{transactionId}</td>

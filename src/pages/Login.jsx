@@ -28,6 +28,9 @@ const Login = () => {
             .then((error) => {
                 if (error) {
                     setError(error); // Si hay un error, lo mostramos
+                    // Limpiamos la contraseña y el email y navegamos al login
+                    setFormData({ username: "", password: "" });
+                    navigate("/login"); // Navegamos al login para que lo intente de nuevo
                 } else {
                     setError(null);  // Limpiamos cualquier error previo
                     navigate("/");   // Navegamos al home solo si no hay error

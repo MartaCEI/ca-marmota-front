@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { HomeSections } from "@/components/HomeSections"; 
 
 const Home = () => {
-    const URL = import.meta.env.VITE_API_URL;
+    const { VITE_API_URL } = import.meta.env;
     const [error, setError] = useState('');
     const [info, setInfo] = useState([]);
 
@@ -12,7 +12,7 @@ const Home = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch(`${URL}/home`);
+            const response = await fetch(`${VITE_API_URL}/home`);
             const objeto = await response.json();
             if (objeto.status === "error") {
                 setError(`Tuvimos un error: ${objeto.msg}`);
