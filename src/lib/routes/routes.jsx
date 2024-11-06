@@ -61,10 +61,6 @@ export const router = createBrowserRouter (
                     path: "/register",
                     element: <Register />
                 },  
-                {   // Prueba PopUp
-                    path: "/popup",
-                    element: <Prueba_popup />
-                }
             ]
         }
     ]

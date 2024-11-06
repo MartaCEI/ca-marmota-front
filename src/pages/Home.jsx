@@ -1,54 +1,70 @@
 import { useState, useEffect } from "react";
-import { HomeSections } from "@/components/HomeSections"; 
+import { HomeSectionsHorizontal } from "@/components/HomeSectionsHorizontal";
+import { HomeSectionsVertical } from "@/components/HomeSectionsVertical";
 
 const Home = () => {
     const { VITE_API_URL } = import.meta.env;
     const [error, setError] = useState('');
-    const [info, setInfo] = useState([]);
+    const [info, setInfo] = useState({
+        headerImage: "",
+        logo: "",
+        title: "",
+        subtitle: "",
+        sections: []
+    });
 
     useEffect(() => {
-        fetchData();
+        fetchHomeData();
     }, []);
 
-    const fetchData = async () => {
+    const fetchHomeData = async () => {
         try {
             const response = await fetch(`${VITE_API_URL}/home`);
             const objeto = await response.json();
+            console.log("Datos recibidos:", objeto);
             if (objeto.status === "error") {
                 setError(`Tuvimos un error: ${objeto.msg}`);
                 return;
             }
-            console.log("Datos recibidos:", objeto.data); // Verifica la estructura aquí
-            setInfo(Array.isArray(objeto.data) ? objeto.data : []); // Asegura que sea un array
+            // Accede a data[0] y asigna el contenido directamente a info
+            setInfo(objeto.data[0]);
         } catch (error) {
             if (error.name !== 'AbortError') {
                 console.log("Error al hacer el fetch de los datos:", error);
                 setError("Error al cargar los datos");
             }
         }
-    }
+    };
 
     return (
         <>
-            <h1>Home</h1>
-            <h1>Usuarios</h1>
-            <p>Admin admin@mail.com 1111</p>
-            <p>marta marta@gmail.com 1234</p>
+            <div className="Home-header">
+                <h1>Usuarios</h1>
+                <p>Admin admin@mail.com 1111</p>
+                <p>marta marta@gmail.com 1234</p>
+                <h1>{info.title}</h1>
+                <h2>{info.subtitle}</h2>
+            </div>
+            
             {error ? (
                 <p>{error}</p>
             ) : (
-                info.length > 0 ? (
-                    info.map((item, index) => (
-                        <section className="Section" key={index}>
-                            <HomeSections {...item} />
-                        </section>
-                    ))
-                ) : (
-                    <p>No hay datos disponibles.</p>
-                )
+                info.sections.map((section, index) => (
+                    <div key={section.index}>
+                        {index % 2 === 0 ? (
+                            <section className="Section-horizontal">
+                                <HomeSectionsHorizontal section={section} />
+                            </section>
+                        ) : (
+                            <section className="Section-vertical">
+                                <HomeSectionsVertical section={section} />
+                            </section>
+                        )}
+                    </div>
+                ))
             )}
         </>
     );
-}
+};
 
 export default Home;
