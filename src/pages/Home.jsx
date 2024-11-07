@@ -42,8 +42,12 @@ const Home = () => {
                 <img className="Home-header-img" src={`${VITE_BACKEND_URL}/img/${info.headerImage}`} alt={info.headerImage} />
                 <img className="Home-header-logo" src={`${VITE_BACKEND_URL}/img/${info.logo}`} alt={info.logo} />
             </div>
-                <h1>{info.title}</h1>
-                <h2>{info.subtitle}</h2>
+            <section className="Section-home">
+                <h1 className="Section-home-h1">{info.title}</h1>
+                <p className="Section-home-p">{info.subtitle}</p>
+            </section>
+            <div className="Vertical-line"></div>
+            
             {error ? (
                 <p>{error}</p>
             ) : (

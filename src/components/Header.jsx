@@ -25,24 +25,25 @@ export const Header = () => {
         <header className="Header">
             <nav className={`Nav ${isMenuOpen ? 'isActive' : ''}`}>
                 <div className='Nav-div'>
+                    <div className='Nav-div-upper'>
                     {
                     user ? ( // Si hay un usuario
                             user.isAdmin ? ( // Si es admin
                                 <ul className="Nav-ul-user">
                                     <li>
-                                        <p className="Nav-p-user">Hola</p>
+                                        <p className="Nav-p-user">Bienvenid@</p>
                                     </li>
                                     <li>
                                         <p className="Nav-p-user">{user.name}</p>
                                     </li>
                                     <li>
-                                        <NavLink className="Nav-a-user" to="/admin">Area admin </NavLink>
+                                        <NavLink className="Nav-a-user" to="/admin">Area admin</NavLink>
                                     </li>
                                 </ul>
                             ) : ( // Si no es admin
                                 <ul className="Nav-ul-user">
                                     <li>
-                                        <p className="Nav-p-user">Hola</p>
+                                        <p className="Nav-p-user">Bienvenid@</p>
                                     </li>
                                     <li>
                                         <p className="Nav-p-user">{user.name}</p>
@@ -54,6 +55,7 @@ export const Header = () => {
                             )
                         ) : null
                     }
+                    </div>
                     <ul className="Nav-ul">
                         <li className="Nav-li">
                             <NavLink className="Header-a" to={"/"}>Home</NavLink>
@@ -82,8 +84,8 @@ export const Header = () => {
             </nav>
             
             <div className="Header-btn" onClick={handleOnClick}>
-                <button className={`Header-btn-menu ${isMenuOpen ? 'isHidden' : ''}`}>Menu</button>
-                <button className={`Header-btn-cerrar ${isMenuOpen ? '' : 'isHidden'}`}>Cerrar</button>
+                <button className={`Header-btn-menu ${isMenuOpen ? 'isHidden' : ''}`}>Menu &#8811;</button>
+                <button className={`Header-btn-cerrar ${isMenuOpen ? '' : 'isHidden'}`}>Cerrar &#8810;</button>
             </div>
         </header>
     );

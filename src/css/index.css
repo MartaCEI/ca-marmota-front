@@ -63,7 +63,12 @@ html {
 }
 
 body {
-  font-family: Helvetica, Arial;
+  font-family: 'mirage', serif;
+  --backgrundColor-primary: #e5e7eb;
+  --backgrundColor-secondary: #333;
+  --text-primary: #5A6B05;
+  --text-secondary: #333;
+  --text-tertiary: #fff;
 }
 
 .Container {
@@ -80,38 +85,61 @@ body {
 
 /* Fin reset */
 
+@font-face {
+  font-family: 'george';
+  font-style: normal;
+  src: url('../assets/fonts/louis_george_cafe/Louis\ George\ Cafe.ttf') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@font-face {
+  font-family: 'mirage';
+  font-style: normal;
+  src: url('../assets/fonts/made_mirage/MADE\ Mirage\ Regular\ PERSONAL\ USE.otf') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+button,
+a {
+  cursor: pointer;
+  font-family: 'george', sans-serif;
+  text-transform: uppercase;
+}
+
+
+
 /* CSS del componente Header.jsx */
 .Header {
-  width: 100%;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  color: #5A6B05;
   z-index: 1
 }
 
 .Nav {
   position: fixed;
   top: 0;
-  right: -50%;
-  width: 50%;
+  right: -18rem;
+  width: 18rem;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 2rem;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.4s ease-in-out;
 }
 
 .Nav.isActive {
-  transform: translateX(-300px);
+  transform: translateX(-18rem);
 }
 
 .Nav-div {
-  width: 33%;
   height: 100%;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 15%;
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.5); */
+}
+
+.Nav-div-upper {
+  height: 135px;
 }
 
 .Nav-ul-user {
@@ -128,12 +156,11 @@ body {
   margin-top: 1rem;
   color: white;
   text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-transform: uppercase;
+  font-size: 1.2rem;
   cursor: pointer;
-  padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.6rem 0.8rem;
+  background-color: var(--text-primary);
+  word-spacing: 0.3rem;
 }
 
 .Header-btn {
@@ -141,12 +168,11 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 10px;
-  width: 100px;
-  height: 100px;
+  padding: 0.8rem 1.6rem 2rem;
+  width: 165px;
   top: 30%;
-  right: -40px;
-  background-color: rgba(0, 0, 0, 0.6);
+  right: -70px;
+  background-color: var(--backgrundColor-secondary);
   color: white;
   cursor: pointer;
   transform: rotate(-90deg);
@@ -157,11 +183,15 @@ body {
   transform: translateX(-10px) rotate(-90deg);
 }
 
+.Header-btn-cerrar,
+.Header-btn-menu{
+  word-spacing: 0.5rem;
+}
+
 .Header-btn-cerrar.isHidden,
 .Header-btn-menu.isHidden {
   display: none;
 }
-
 
 .Nav-ul {
   list-style: none;
@@ -172,8 +202,16 @@ body {
   gap: 2rem;
 }
 
-/* CSS del componente Home.jsx */
+.Header-a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  font-family: 'mirage', sans-serif;
+}
 
+
+/* CSS del componente Home.jsx */
 .Home-header {
   width: 100%;
   height: 80vh;
@@ -197,4 +235,57 @@ body {
   transform: translateX(-50%);
   width: 15%;
   cursor: pointer;
+}
+
+.Section-home {
+  margin: auto;
+  max-width: 1200px;
+  padding: 7rem 3rem 5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+}
+
+.Section-home-h1 {
+  font-size: 3rem;
+  padding: 2rem 2rem 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--text-primary);
+}
+
+
+.Section-home-p {
+  font-size: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.Vertical-line {
+  width: 2px;
+  height: 200px;
+  background-color: var(--text-primary);
+  margin: 0 auto;
+}
+
+.Horizontal-div {
+  width: 100%;
+  position: relative;
+  
+}
+.Horizontal-img {
+
+}
+.Horizontal-h3 {
+
+}
+.Horizontal-p {
+
 }
