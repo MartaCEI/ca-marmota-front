@@ -3,7 +3,7 @@ import { HomeSectionsHorizontal } from "@/components/HomeSectionsHorizontal";
 import { HomeSectionsVertical } from "@/components/HomeSectionsVertical";
 
 const Home = () => {
-    const { VITE_API_URL } = import.meta.env;
+    const { VITE_API_URL, VITE_BACKEND_URL } = import.meta.env;
     const [error, setError] = useState('');
     const [info, setInfo] = useState({
         headerImage: "",
@@ -38,10 +38,9 @@ const Home = () => {
 
     return (
         <>
+            <img className="Header-img-large" src={`${VITE_BACKEND_URL}/img/${info.headerImage}`} alt={info.headerImage} />
+            <img className="Header-logo" src={`${VITE_BACKEND_URL}/img/${info.logo}`} alt={info.logo} />
             <div className="Home-header">
-                <h1>Usuarios</h1>
-                <p>Admin admin@mail.com 1111</p>
-                <p>marta marta@gmail.com 1234</p>
                 <h1>{info.title}</h1>
                 <h2>{info.subtitle}</h2>
             </div>

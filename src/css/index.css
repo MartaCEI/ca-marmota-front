@@ -1,68 +1,198 @@
-*{
+* {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box;
-  }
-  
-  li {
+}
+
+li {
   list-style: none;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: inherit;
   font-weight: inherit;
-  }
-  
-  a {
+}
+
+a {
   color: inherit;
   text-decoration: none;
   display: block;
-  }
-  
-  p a {
+}
+
+p a {
   display: inline;
-  }
-  
-  img, picture, video, iframe {
+}
+
+img,
+picture,
+video,
+iframe {
   display: block;
   width: 100%;
   /* height: initial; */
-  }
-  
-  form, input, label, select, option, textarea, button {
+}
+
+form,
+input,
+label,
+select,
+option,
+textarea,
+button {
   font-size: inherit;
   font-family: inherit;
   display: block;
   background-color: transparent;
-  }
-  
-  :root {
+}
+
+:root {
   font-size: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  }
-  
-  html {
+}
+
+html {
   scroll-behavior: smooth;
-  }
-  
-  body {
+}
+
+body {
   font-family: Helvetica, Arial;
-  }
-  
-  .Container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+}
 
-  .Main {
-    width: 100%;
-    flex: 1 1 0%;
-    padding: 1rem;
-    background-color: #e5e7eb
-  }
+.Container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-  /* Fin reset */
+.Main {
+  width: 100%;
+  flex: 1 1 0%;
+  background-color: #e5e7eb
+}
+
+/* Fin reset */
+
+/* CSS del componente Header.jsx */
+.Header {
+  position: relative;
+  /* Establece un contexto de posición relativo */
+  width: 100%;
+  overflow: hidden;
+  /* Oculta el contenido que se sale del contenedor */
+  font-size: 1.5rem;
+  z-index: 1;
+}
+
+/* Estilo del logo */
+.Header-logo-div {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15%;
+  cursor: pointer;
+}
+
+.Nav {
+  position: fixed;
+  top: 0;
+  right: -50%;
+  width: 50%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.Nav.isActive {
+  transform: translateX(-300px);
+}
+
+.Nav-div {
+  width: 33%;
+  height: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Nav-ul-user {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.Nav-a-user {
+  margin-top: 1rem;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Header-btn {
+  position: fixed;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 10px;
+  width: 100px;
+  height: 100px;
+  top: 30%;
+  right: -40px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  cursor: pointer;
+  transform: rotate(-90deg);
+  transition: transform 0.2s;
+}
+
+.Header-btn:hover {
+  transform: translateX(-10px) rotate(-90deg);
+}
+
+.Header-btn-cerrar.isHidden,
+.Header-btn-menu.isHidden {
+  display: none;
+}
+
+
+.Nav-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* CSS del componente Home.jsx */
+
+.Header-img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

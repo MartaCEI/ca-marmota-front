@@ -5,11 +5,8 @@ import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
     const { user, logout } = useUser();
-    const [info, setInfo] = useState({});
-    const { VITE_API_URL, VITE_BACKEND_URL } = import.meta.env;
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    
     useEffect(() => {
         if (user) {
             console.log("Usuario logueado:", user);  // Verificar si isAdmin está presente
@@ -19,29 +16,6 @@ export const Header = () => {
     }, [user]); // Se ejecuta cada vez que cambia el usuario
     
     const userId = user ? user._id : null;
-    
-    
-    useEffect(() => {
-        fetchHomeData();
-    }, []);
-
-    const fetchHomeData = async () => {
-        try {
-            const response = await fetch(`${VITE_API_URL}/home`);
-            const objeto = await response.json();
-            console.log("Datos del encabezado:", objeto);
-            if (objeto.status === "error") {
-                setError(`Tuvimos un error: ${objeto.msg}`);
-                return;
-            }
-            setInfo(objeto.data[0]);
-        } catch (error) {
-            if (error.name !== 'AbortError') {
-                console.log("Error al hacer el fetch de los datos:", error);
-                setError("Error al cargar los datos");
-            }
-        }
-    };
 
     const handleOnClick = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -49,45 +23,62 @@ export const Header = () => {
 
     return (
         <header className="Header">
-            <img className="Header-img-large" src={`${VITE_BACKEND_URL}/img/${info.headerImage}`} alt={info.headerImage} />
-            <img className="Header-logo" src={`${VITE_BACKEND_URL}/img/${info.logo}`} alt={info.logo} />
-
             <nav className={`Nav ${isMenuOpen ? 'isActive' : ''}`}>
-                {user ? ( // Si hay un usuario
-                        user.isAdmin ? ( // Si es admin
-                            <li>
-                                <NavLink className="Header-a" to="/admin">Admin</NavLink>
-                            </li>
-                        ) : ( // Si no es admin
-                            <li>
-                                <NavLink className="Header-a" to={`/myBookings/${userId}`}>My Bookings</NavLink>
-                            </li>
-                        )
-                    ) : null}
-                <ul className="Nav-ul">
-                    <li className="Nav-li">
-                        <NavLink className="Nav-li" to={"/"}>Home</NavLink>
-                    </li>
-                    <li>
-                        <NavLink className="Header-a" to={"/servicios"}>Servicios</NavLink>
-                    </li>
-                    <li>
-                        <NavLink className="Header-a" to={"/rooms"}>Habitaciones</NavLink>
-                    </li>
+                <div className='Nav-div'>
                     {
-                        !user ? (  // Si no hay usuario logueado
-                            <>
-                                <li><NavLink className="Login-btn" to="/login">Login</NavLink></li>
-                                <li><NavLink className="Login-btn" to="/register">Registro</NavLink></li>
-                            </>
-                        ) : (  // Si hay usuario logueado
-                            <>
-                                <h3 className="Header-h3">{user.name}</h3>
-                                <button className="Login-btn" onClick={logout} type="button">Salir</button>
-                            </>
-                        )
+                    user ? ( // Si hay un usuario
+                            user.isAdmin ? ( // Si es admin
+                                <ul className="Nav-ul-user">
+                                    <li>
+                                        <p className="Nav-p-user">Hola</p>
+                                    </li>
+                                    <li>
+                                        <p className="Nav-p-user">{user.name}</p>
+                                    </li>
+                                    <li>
+                                        <NavLink className="Nav-a-user" to="/admin">Area admin </NavLink>
+                                    </li>
+                                </ul>
+                            ) : ( // Si no es admin
+                                <ul className="Nav-ul-user">
+                                    <li>
+                                        <p className="Nav-p-user">Hola</p>
+                                    </li>
+                                    <li>
+                                        <p className="Nav-p-user">{user.name}</p>
+                                    </li>
+                                    <li>
+                                        <NavLink className="Nav-a-user" to={`/myBookings/${userId}`}>Mis reservas</NavLink>
+                                    </li>
+                                </ul>
+                            )
+                        ) : null
                     }
-                </ul>
+                    <ul className="Nav-ul">
+                        <li className="Nav-li">
+                            <NavLink className="Header-a" to={"/"}>Home</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="Header-a" to={"/servicios"}>Servicios</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="Header-a" to={"/rooms"}>Habitaciones</NavLink>
+                        </li>
+                    </ul>
+                    <ul className="Nav-ul-user">
+                        {
+                            !user ? (  // Si no hay usuario logueado
+                                <li>
+                                    <NavLink className="Nav-a-user" to="/login">Login</NavLink>
+                                </li>
+                            ) : (  // Si hay usuario logueado
+                                <li>
+                                    <button className="Nav-a-user" onClick={logout} type="button">Logout</button>
+                                </li>
+                            )
+                        }
+                    </ul>
+                </div>
             </nav>
             
             <div className="Header-btn" onClick={handleOnClick}>
