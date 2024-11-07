@@ -82,23 +82,9 @@ body {
 
 /* CSS del componente Header.jsx */
 .Header {
-  position: relative;
-  /* Establece un contexto de posición relativo */
   width: 100%;
-  overflow: hidden;
-  /* Oculta el contenido que se sale del contenedor */
   font-size: 1.5rem;
-  z-index: 1;
-}
-
-/* Estilo del logo */
-.Header-logo-div {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 15%;
-  cursor: pointer;
+  z-index: 1
 }
 
 .Nav {
@@ -188,11 +174,27 @@ body {
 
 /* CSS del componente Home.jsx */
 
-.Header-img {
+.Home-header {
   width: 100%;
-  height: 100vh;
+  height: 80vh;
+  position: relative;
+}
+
+.Home-header-img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/* Estilo del logo */
+.Home-header-logo {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15%;
+  cursor: pointer;
 }

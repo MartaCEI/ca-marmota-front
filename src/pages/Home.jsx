@@ -38,13 +38,12 @@ const Home = () => {
 
     return (
         <>
-            <img className="Header-img-large" src={`${VITE_BACKEND_URL}/img/${info.headerImage}`} alt={info.headerImage} />
-            <img className="Header-logo" src={`${VITE_BACKEND_URL}/img/${info.logo}`} alt={info.logo} />
             <div className="Home-header">
+                <img className="Home-header-img" src={`${VITE_BACKEND_URL}/img/${info.headerImage}`} alt={info.headerImage} />
+                <img className="Home-header-logo" src={`${VITE_BACKEND_URL}/img/${info.logo}`} alt={info.logo} />
+            </div>
                 <h1>{info.title}</h1>
                 <h2>{info.subtitle}</h2>
-            </div>
-            
             {error ? (
                 <p>{error}</p>
             ) : (
