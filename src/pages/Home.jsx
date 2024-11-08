@@ -65,6 +65,7 @@ const Home = () => {
                     </div>
                 ))
             )}
+            {/* <div className="Vertical-line"></div> */}
         </>
     );
 };
