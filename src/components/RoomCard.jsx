@@ -5,15 +5,12 @@ const RoomCard = ({ _id, imagesUrls, roomName, rentPerDay, maxCount, type, descr
     const { VITE_BACKEND_URL } = import.meta.env;
     const { user } = useUser();
 
-    // Verifica si room tiene imágenes y quita las comillas adicionales
-    const cleanImageUrl = (url) => url.replace(/['"]+/g, '');
     return (
         <>
         <div className="Vertical-div">
                 <div className="Vertical-div-container-outter">
                     <div className="Vertical-div-container-img">
-                        {/* <img className="Vertical-img" src={`${VITE_BACKEND_URL}/img/${imagesUrls[0]}`} alt={roomName} /> */}
-                        <img className="Vertical-img" src={cleanImageUrl(imagesUrls[0])} alt={roomName} />
+                        <img className="Vertical-img" src={`${VITE_BACKEND_URL}/img/habitaciones/${imagesUrls[0]}`} alt={roomName} />
                         <div className="Vertical-img-cover"></div>
                     </div>
                         <div className="Vertical-div-grid">
@@ -23,7 +20,7 @@ const RoomCard = ({ _id, imagesUrls, roomName, rentPerDay, maxCount, type, descr
                                     <p className="Horizontal-p">Por dia: ${rentPerDay}</p>
                                     <p className="Horizontal-p">Nº de personas: {maxCount}</p>
                                     <p className="Horizontal-p">Tipo: {type}</p>
-                                    <div>
+                                    <div className='Rooms-div-btn'>
                                         {/* Mostrar botón "Book Now" solo si checkIn y checkOut están disponibles */}
                                         {checkIn && checkOut && (
                                             user ? (  // Si hay usuario logueado

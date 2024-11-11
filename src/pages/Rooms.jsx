@@ -71,10 +71,11 @@ function Rooms() {
                 <h1 className="Section-home-h1">{info.title}</h1>
                 <p className="Section-home-p">{info.subtitle}</p>
             </section>
-            <div className="Vertical-line"></div>
 
-            <div className='flex gap-4 m-auto'>
+            <div className='Habitaciones-div'>
                 <DatePicker.RangePicker
+                className="Habitaciones-range-picker"
+                placeholder={['Fecha de inicio', 'Fecha de fin']}
                     onChange={(dates) => {
                         if (dates) {
                             setDates({
@@ -86,12 +87,12 @@ function Rooms() {
                         }
                     }}
                 />
-                <button className='Login-btn' onClick={filterRooms} disabled={!dates.checkIn || !dates.checkOut}>
+                
+                <button className='Nav-a-user' onClick={filterRooms} disabled={!dates.checkIn || !dates.checkOut}>
                     Check Availability
                 </button>
             </div>
             <div>
-                <h1>Rooms</h1>
                 {filteredRooms.length > 0 ? (
                     filteredRooms.map(room => (
                         <div className="Section" key={room._id}>

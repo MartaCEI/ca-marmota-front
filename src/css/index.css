@@ -453,11 +453,64 @@ a {
   word-spacing: 0.3rem;
 }
 
+.Habitaciones-div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2rem;
+}
 
+.Habitaciones-range-picker .ant-picker {
+  border: 2px solid green !important;
+  color: green;
+}
 
+.Habitaciones-range-picker .ant-picker:hover,
+.Habitaciones-range-picker .ant-picker-focused,
+.Habitaciones-range-picker .ant-picker:focus-within {
+  border-color: darkgreen !important;
+}
 
+/* Forzar color verde en el borde al hacer hover, focus, y active */
+.Habitaciones-range-picker .ant-picker:hover,
+.Habitaciones-range-picker .ant-picker-focused {
+  border: 2px solid darkgreen !important;
+}
 
+/* Cambiar el color del texto, placeholder e ícono */
+.Habitaciones-range-picker .ant-picker-input input {
+  color: green !important;
+}
 
+.Habitaciones-range-picker .ant-picker-input input::placeholder {
+  color: green !important;
+}
+
+.Habitaciones-range-picker .ant-picker-suffix svg {
+  fill: green !important;
+}
+
+/* Remover la barra azul en la selección */
+.Habitaciones-range-picker .ant-picker-active-bar {
+  background: none !important;
+}
+
+.Rooms-div-btn {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Amenity-div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
 
 
 

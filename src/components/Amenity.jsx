@@ -1,7 +1,7 @@
 export const Amenity = ({ amenity }) => {
     return (
-        <div className="Amenity">
-            <p>✅ {amenity}</p>
-        </div>
+        <>
+            <p className="p"> {amenity}</p>
+        </>
     );
 }

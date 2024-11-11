@@ -5,7 +5,7 @@ import { useUser } from '@/hooks/useUser';
 import { formatDate } from '@/utils/date';
 
 function Booking() {
-    const { VITE_API_URL } = import.meta.env;
+    const { VITE_API_URL, VITE_BACKEND_URL } = import.meta.env;
     const { user } = useUser();
     const { roomId, checkIn, checkOut } = useParams(); // Obtiene roomId, checkIn y checkOut de la URL
     const [room, setRoom] = useState(null);
@@ -90,10 +90,7 @@ function Booking() {
         bookRoom();
     };
 
-    const cleanImageUrl = (url) => url.replace(/['"]+/g, '');
-
     // Manejo de carga y error
-    if (loading) return <div>Cargando...</div>;
     if (error) return <div>Error: {error}</div>;
 
     // Asegúrate de que room no sea null
@@ -103,31 +100,18 @@ function Booking() {
 
     return (
         <>
-            <div className='container'>
-                <h1>{user.name} Aqui están los datos de tu reserva</h1>
-                <h2 className='text-center'>{roomName}</h2>
-                {/* Verifica si hay imágenes antes de renderizar */}
-                {imagesUrls.length > 0 ? (
-                    <img src={cleanImageUrl(imagesUrls[0])} alt="room" />
-                ) : (
-                    <p>No images available</p> // Mensaje alternativo si no hay imágenes
-                )}
-                <p>{description}</p>
-                <p>Max count: {maxCount}</p>
-                <p>Rent per day: ${rentPerDay}</p>
-                <p>Type: {type}</p>
-                <p>Amenities: </p>
-                {
-                    amenities.map((amenity, index) => (
-                        <Amenity key={index} amenity={amenity} />
-                    ))
-                }
-            </div>
-            <p>Total de noches: {totalNights}</p>
-            <p>Monto total: ${totalAmount}</p>
-            <p>CheckIn: {formatDate(checkIn)}</p>
-            <p>CheckOut: {formatDate(checkOut)}</p>
-            <button onClick={handelOnClick}>Book</button>
+            <img className="Vertical-img" src={`${VITE_BACKEND_URL}/img/habitaciones/${imagesUrls[0]}`} alt={roomName} />
+            <h1 className='text-center'>Datos de la reserva:</h1>
+            <p className='text-center'>Habitacione a nombre de: {user.name}</p>
+            <h2 className='text-center'>{roomName}</h2>
+            <p className='text-center'>Max count: {maxCount}</p>
+            <p className='text-center'>Rent per day: ${rentPerDay}</p>
+            <p className='text-center'>Type: {type}</p>
+            <p className='text-center'>Total de noches: {totalNights}</p>
+            <p className='text-center'>Monto total: ${totalAmount}</p>
+            <p className='text-center'>CheckIn: {formatDate(checkIn)}</p>
+            <p className='text-center'>CheckOut: {formatDate(checkOut)}</p>
+            <button className='Nav-a-user text-center' onClick={handelOnClick}>Reservar</button>
         </>
     );
 }

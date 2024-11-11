@@ -2,12 +2,13 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Amenity } from '../components/Amenity';
+import { Link } from 'react-router-dom';
 
 const RoomDetails = () => {
     const { id } = useParams();
     const [room, setRoom] = useState({});
 
-    const { VITE_API_URL } = import.meta.env;
+    const { VITE_API_URL, VITE_BACKEND_URL } = import.meta.env;
 
     useEffect(() => {
         fetchRoom();
@@ -24,30 +25,38 @@ const RoomDetails = () => {
         }
     };
 
-    const cleanImageUrl = (url) => url.replace(/['"]+/g, '');
     const { imagesUrls = [], roomName, rentPerDay, maxCount, type, description, amenities = [] } = room;
 
     return (
         <>
-        <div className='container'>
-            <h2 className='text-center'>{roomName}</h2>
-            {/* Verifica si hay imágenes antes de renderizar */}
-            {imagesUrls.length > 0 ? (
-                <img src={cleanImageUrl(imagesUrls[0])} alt="room" />
-            ) : (
-                <p>No images available</p> // Mensaje alternativo si no hay imágenes
-            )}
-            <p>{description}</p>
-            <p>Max count: {maxCount}</p>
-            <p>Rent per day: ${rentPerDay}</p>
-            <p>Type: {type}</p>
-            <p>Amenities: </p>
-            {
-                amenities.map((amenity, index) => (
-                    <Amenity key={index} amenity={amenity} />
-                ))
-            }
+            <div className="Vertical-div">
+                <div className="Vertical-div-container-outter">
+                    <div className="Vertical-div-container-img">
+                        <img className="Vertical-img" src={`${VITE_BACKEND_URL}/img/habitaciones/${imagesUrls[0]}`} alt={roomName} />
+                        <div className="Vertical-img-cover"></div>
+                    </div>
+                    <div className="Vertical-div-grid">
+                        <div className="Vertical-div-inner text">
+                            <h2 className="Vertical-h2">{roomName}</h2>
+                            <div className="Vertical-HorizontalLine"></div>
+                            <p className="Horizontal-p">{description}</p>
+                            <p className="Horizontal-p">Por dia: ${rentPerDay}</p>
+                            <p className="Horizontal-p">Nº de personas: {maxCount}</p>
+                            <p className="Horizontal-p">Tipo: {type}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <p className="p">Amenities: </p>
+            <ul className='Amenity-div'>
+                {
+                    amenities.map((amenity, index) => (
+                        <Amenity key={index} amenity={amenity} />
+                    ))
+                }
+            </ul>
+            <Link className="Vertical-btn" to="/rooms">Volver</Link>
+            <div className="Vertical-div-inner"></div>
         </>
     );
 }
