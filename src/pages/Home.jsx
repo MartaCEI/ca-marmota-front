@@ -1,46 +1,31 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { HomeSectionsHorizontal } from "@/components/HomeSectionsHorizontal";
 import { HomeSectionsVertical } from "@/components/HomeSectionsVertical";
+import { usePageInfo } from "@/hooks/usePageInfo";
 
 const Home = () => {
-    const { VITE_API_URL, VITE_BACKEND_URL } = import.meta.env;
-    const [error, setError] = useState('');
-    const [info, setInfo] = useState({
-        headerImage: "",
-        logo: "",
-        title: "",
-        subtitle: "",
-        sections: []
-    });
+    const { VITE_BACKEND_URL } = import.meta.env;
+    const { pageInfo, fetchPageInfo, error } = usePageInfo(); // Extraer pageInfo y error del contexto
 
     useEffect(() => {
-        fetchHomeData();
-    }, []);
+        fetchPageInfo("home"); // Llamada para cargar la información de la página "home"
+    }, [fetchPageInfo]);
 
-    const fetchHomeData = async () => {
-        try {
-            const response = await fetch(`${VITE_API_URL}/home`);
-            const objeto = await response.json();
-            console.log("Datos recibidos:", objeto);
-            if (objeto.status === "error") {
-                setError(`Tuvimos un error: ${objeto.msg}`);
-                return;
-            }
-            // Accede a data[0] y asigna el contenido directamente a info
-            setInfo(objeto.data[0]);
-        } catch (error) {
-            if (error.name !== 'AbortError') {
-                console.log("Error al hacer el fetch de los datos:", error);
-                setError("Error al cargar los datos");
-            }
-        }
-    };
+    const info = pageInfo; // Renombramos pageInfo para usar info en el componente
 
     return (
         <>
             <div className="Home-header">
-                <img className="Home-header-img" src={`${VITE_BACKEND_URL}/img/${info.headerImage}`} alt={info.headerImage} />
-                <img className="Home-header-logo" src={`${VITE_BACKEND_URL}/img/${info.logo}`} alt={info.logo} />
+                <img
+                    className="Home-header-img"
+                    src={`${VITE_BACKEND_URL}/img/${info.image}`}
+                    alt={info.image || "Header"}
+                />
+                <img
+                    className="Home-header-logo"
+                    src={`${VITE_BACKEND_URL}/img/${info.logo}`}
+                    alt={info.logo || "Logo"}
+                />
             </div>
             <section className="Section-home">
                 <h1 className="Section-home-h1">{info.title}</h1>
@@ -51,21 +36,24 @@ const Home = () => {
             {error ? (
                 <p>{error}</p>
             ) : (
-                info.sections.map((section, index) => (
-                    <div key={section.index}>
-                        {index % 2 === 0 ? (
-                            <section className="Section-horizontal">
-                                <HomeSectionsHorizontal section={section} />
-                            </section>
-                        ) : (
-                            <section className="Section-vertical">
-                                <HomeSectionsVertical section={section} />
-                            </section>
-                        )}
-                    </div>
-                ))
+                info.articles && info.articles.length > 0 ? (
+                    info.articles.map((article, index) => (
+                        <div key={index}>
+                            {index % 2 === 0 ? (
+                                <article className="Section-horizontal">
+                                    <HomeSectionsHorizontal article={article} />
+                                </article>
+                            ) : (
+                                <article className="Section-vertical">
+                                    <HomeSectionsVertical article={article} />
+                                </article>
+                            )}
+                        </div>
+                    ))
+                ) : (
+                    <p>No sections available.</p>
+                )
             )}
-            {/* <div className="Vertical-line"></div> */}
         </>
     );
 };

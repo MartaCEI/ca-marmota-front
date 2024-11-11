@@ -1,12 +1,21 @@
 import { useState, useEffect } from 'react';
 import { DatePicker } from 'antd';
-import Room from '../components/Room';
+import RoomCard from '@/components/RoomCard';
+import { usePageInfo } from "@/hooks/usePageInfo";
 
 function Rooms() {
     const URL = import.meta.env.VITE_API_URL;
+    const { VITE_BACKEND_URL } = import.meta.env;
     const [rooms, setRooms] = useState([]);
     const [filteredRooms, setFilteredRooms] = useState([]);
     const [dates, setDates] = useState({ checkIn: '', checkOut: '' });
+    const { pageInfo, fetchPageInfo, error } = usePageInfo(); // Extraer pageInfo y error del contexto
+
+    useEffect(() => {
+        fetchPageInfo("habitaciones"); // Llamada para cargar la información de la página "habitaciones"
+    }, [fetchPageInfo]);
+
+    const info = pageInfo; // Renombramos pageInfo para usar info en el componente
 
     useEffect(() => {
         async function fetchRooms() {
@@ -45,6 +54,25 @@ function Rooms() {
 
     return (
         <>
+
+<div className="Home-header">
+                <img
+                    className="Home-header-img"
+                    src={`${VITE_BACKEND_URL}/img/${info.image}`}
+                    alt={info.image || "Header"}
+                />
+                <img
+                    className="Home-header-logo"
+                    src={`${VITE_BACKEND_URL}/img/${info.logo}`}
+                    alt={info.logo || "Logo"}
+                />
+            </div>
+            <section className="Section-home">
+                <h1 className="Section-home-h1">{info.title}</h1>
+                <p className="Section-home-p">{info.subtitle}</p>
+            </section>
+            <div className="Vertical-line"></div>
+
             <div className='flex gap-4 m-auto'>
                 <DatePicker.RangePicker
                     onChange={(dates) => {
@@ -67,13 +95,13 @@ function Rooms() {
                 {filteredRooms.length > 0 ? (
                     filteredRooms.map(room => (
                         <div className="Section" key={room._id}>
-                            <Room {...room} checkIn={dates.checkIn} checkOut={dates.checkOut} />
+                            <RoomCard {...room} checkIn={dates.checkIn} checkOut={dates.checkOut} />
                         </div>
                     ))
                 ) : (
                     rooms.map(room => (
                         <div key={room._id}>
-                            <Room {...room} />
+                            <RoomCard {...room} />
                         </div>
                     ))
                 )}

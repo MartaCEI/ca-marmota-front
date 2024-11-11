@@ -14,8 +14,6 @@ const Login = () => {
     const [canSubmit, setCanSubmit] = useState(false);
     const [error, setError] = useState(null);
 
-
-
     useEffect(() => {
         setCanSubmit(formData.username && formData.password);
     }, [formData]);

@@ -13,6 +13,7 @@ import RoomDetails from "@/pages/RoomDetails";
 import MyBookigns from "@/pages/MyBookings";
 import UpdateRooms from "@/pages/UpdateRoom";
 import Prueba_popup from "@/pages/Prueba_popup";
+import Restaurante from "../../pages/Restaurante";
 
 export const router = createBrowserRouter (
     [
@@ -32,6 +33,10 @@ export const router = createBrowserRouter (
                 { 
                     path: "/servicios",
                     element: <Services />
+                },
+                { 
+                    path: "/restaurante",
+                    element: <Restaurante />
                 },
                 {
                     path:"/booking/:roomId/:checkIn/:checkOut", 

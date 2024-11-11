@@ -60,6 +60,9 @@ export const Header = () => {
                         <li className="Nav-li">
                             <NavLink className="Header-a" to={"/"}>Home</NavLink>
                         </li>
+                        <li className="Nav-li">
+                            <NavLink className="Header-a" to={"/restaurante"}>Restuarante</NavLink>
+                        </li>
                         <li>
                             <NavLink className="Header-a" to={"/servicios"}>Servicios</NavLink>
                         </li>

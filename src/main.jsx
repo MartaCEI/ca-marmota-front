@@ -5,11 +5,14 @@ import { router } from '@/lib/routes/routes'
 import { UserProvider } from '@/hooks/useUser.jsx'
 import '@/css/index.css'
 import '@/css/Register.css'
+import { PageInfoProvider } from './hooks/usePageInfo'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <UserProvider>
-      <RouterProvider router={router} />
-    </UserProvider>
+    <PageInfoProvider>
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
+    </PageInfoProvider>
   </StrictMode>,
 )
