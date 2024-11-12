@@ -1,0 +1,131 @@
+[
+    {
+        "roomName": "Habitación Azul",
+        "description": "Habitación Azul: Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos vero autem at deserunt cumque, quae natus, magni ab consequuntur iste consequatur ullam provident, quam distinctio error. Illo debitis voluptates expedita? Autem, libero explicabo? Amet consectetur pariatur est, nulla, autem sunt totam quidem harum magnam, dolore vitae aspernatur. Dicta, dolorem ad!",
+        "maxCount": 2,
+        "rentPerDay": 50,
+        "type": "1 cama",
+        "bathRoom": "privado",
+        "amenities": [
+            "Wi-fi",
+            "Tv",
+            "Desayuno Buffet",
+            "Restaurante",
+            "Calefacción",
+            "Aire Acondicionado",
+            "Parking Gratuito",
+            "Jardín",
+            "Piscina",
+            "Spa",
+            "Agroturismo",
+            "Admitimos Mascotas",
+            "Terraza Chill-Out",
+            "Barbacoa"
+        ],
+        "imagesUrls": [
+            "azul.jpg",
+            "azul2.jpg",
+            "azul3.jpg",
+            "azul4.jpg",
+            "azul5.jpg"
+        ],
+        "currentBookings": []
+    },
+    {
+        "roomName": "Habitacion Beige",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos vero autem at deserunt cumque, quae natus, magni ab consequuntur iste consequatur ullam provident, quam distinctio error. Illo debitis voluptates expedita? Autem, libero explicabo? Amet consectetur pariatur est, nulla, autem sunt totam quidem harum magnam, dolore vitae aspernatur. Dicta, dolorem ad!",
+        "maxCount": 4,
+        "rentPerDay": 100,
+        "type": "1 cama y 1 sofa cama",
+        "bathRoom": "privado",
+        "amenities": [
+            "Wi-fi",
+            "Tv",
+            "Desayuno Buffet",
+            "Restaurante",
+            "Calefacción",
+            "Aire Acondicionado",
+            "Parking Gratuito",
+            "Jardín",
+            "Piscina",
+            "Spa",
+            "Agroturismo",
+            "Admitimos Mascotas",
+            "Terraza Chill-Out",
+            "Barbacoa"
+        ],
+        "imagesUrls": [
+            "beige.jpg",
+            "beige2.jpg",
+            "beige3.jpg",
+            "beige4.jpg",
+            "beige5.jpg"
+        ],
+        "currentBookings": []
+    },
+    {
+        "roomName": "Habitacion Mosaico",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos vero autem at deserunt cumque, quae natus, magni ab consequuntur iste consequatur ullam provident, quam distinctio error. Illo debitis voluptates expedita? Autem, libero explicabo? Amet consectetur pariatur est, nulla, autem sunt totam quidem harum magnam, dolore vitae aspernatur. Dicta, dolorem ad!",
+        "maxCount": 2,
+        "rentPerDay": 60,
+        "type": "1 cama",
+        "bathRoom": "privado",
+        "amenities": [
+            "Wi-fi",
+            "Tv",
+            "Desayuno Buffet",
+            "Restaurante",
+            "Calefacción",
+            "Aire Acondicionado",
+            "Parking Gratuito",
+            "Jardín",
+            "Piscina",
+            "Spa",
+            "Agroturismo",
+            "Admitimos Mascotas",
+            "Terraza Chill-Out",
+            "Barbacoa"
+        ],
+        "imagesUrls": [
+            "mosaico.jpg",
+            "mosaico2.jpg",
+            "mosaico3.jpg",
+            "mosaico4.jpg",
+            "mosaico5.jpg"
+        ],
+        "currentBookings": []
+    },
+    {
+        "roomName": "Habitacion Madera",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos vero autem at deserunt cumque, quae natus, magni ab consequuntur iste consequatur ullam provident, quam distinctio error. Illo debitis voluptates expedita? Autem, libero explicabo? Amet consectetur pariatur est, nulla, autem sunt totam quidem harum magnam, dolore vitae aspernatur. Dicta, dolorem ad!",
+        "maxCount": 4,
+        "rentPerDay": 80,
+        "type": "1 cama",
+        "bathRoom": "privado",
+        "amenities": [
+            "Wi-fi",
+            "Tv",
+            "Desayuno Buffet",
+            "Restaurante",
+            "Calefacción",
+            "Aire Acondicionado",
+            "Parking Gratuito",
+            "Jardín",
+            "Piscina",
+            "Spa",
+            "Agroturismo",
+            "Admitimos Mascotas",
+            "Terraza Chill-Out",
+            "Barbacoa"
+        ],
+        "imagesUrls": [
+            "wood.jpg",
+            "wood1.jpg",
+            "wood2.jpg",
+            "wood3.jpg",
+            "wood4.jpg",
+            "wood5.jpg"
+        ],
+        "currentBookings": []
+    }
+]

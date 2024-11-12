@@ -2,20 +2,20 @@ import { useState, useEffect } from 'react';
 import { DatePicker } from 'antd';
 import RoomCard from '@/components/RoomCard';
 import { usePageInfo } from "@/hooks/usePageInfo";
+import Introduction from "@/components/Introduction";
+import '@/css/Rooms.css';
 
 function Rooms() {
     const URL = import.meta.env.VITE_API_URL;
-    const { VITE_BACKEND_URL } = import.meta.env;
     const [rooms, setRooms] = useState([]);
     const [filteredRooms, setFilteredRooms] = useState([]);
     const [dates, setDates] = useState({ checkIn: '', checkOut: '' });
     const { pageInfo, fetchPageInfo, error } = usePageInfo(); // Extraer pageInfo y error del contexto
-
+    const pagina = "habitaciones"; // Definir la página actual
+    
     useEffect(() => {
-        fetchPageInfo("habitaciones"); // Llamada para cargar la información de la página "habitaciones"
-    }, [fetchPageInfo]);
-
-    const info = pageInfo; // Renombramos pageInfo para usar info en el componente
+        fetchPageInfo(pagina); // Llamada para cargar la información de la página "home"
+    }, [fetchPageInfo, pagina]);
 
     useEffect(() => {
         async function fetchRooms() {
@@ -52,25 +52,10 @@ function Rooms() {
         }
     }
 
+
     return (
         <>
-
-<div className="Home-header">
-                <img
-                    className="Home-header-img"
-                    src={`${VITE_BACKEND_URL}/img/${info.image}`}
-                    alt={info.image || "Header"}
-                />
-                <img
-                    className="Home-header-logo"
-                    src={`${VITE_BACKEND_URL}/img/${info.logo}`}
-                    alt={info.logo || "Logo"}
-                />
-            </div>
-            <section className="Section-home">
-                <h1 className="Section-home-h1">{info.title}</h1>
-                <p className="Section-home-p">{info.subtitle}</p>
-            </section>
+            {pageInfo && <Introduction {...pageInfo} />}
 
             <div className='Habitaciones-div'>
                 <DatePicker.RangePicker
@@ -89,9 +74,10 @@ function Rooms() {
                 />
                 
                 <button className='Nav-a-user' onClick={filterRooms} disabled={!dates.checkIn || !dates.checkOut}>
-                    Check Availability
+                    Disponibilidad
                 </button>
             </div>
+            
             <div>
                 {filteredRooms.length > 0 ? (
                     filteredRooms.map(room => (

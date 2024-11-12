@@ -2,42 +2,25 @@ import { useState, useEffect } from "react";
 import { HomeSectionsHorizontal } from "@/components/HomeSectionsHorizontal";
 import { HomeSectionsVertical } from "@/components/HomeSectionsVertical";
 import { usePageInfo } from "@/hooks/usePageInfo";
+import Introduction from "@/components/Introduction";
 
 const Restaurante = () => {
-    const { VITE_BACKEND_URL } = import.meta.env;
     const { pageInfo, fetchPageInfo, error } = usePageInfo(); // Extraer pageInfo y error del contexto
+    const pagina = "restaurante"; // Definir la página actual
 
     useEffect(() => {
-        fetchPageInfo("restaurante"); // Llamada para cargar la información de la página "home"
-    }, [fetchPageInfo]);
-
-    const info = pageInfo; // Renombramos pageInfo para usar info en el componente
+        fetchPageInfo(pagina); // Llamada para cargar la información de la página "home"
+    }, [fetchPageInfo, pagina]);
 
     return (
         <>
-            <div className="Home-header">
-                <img
-                    className="Home-header-img"
-                    src={`${VITE_BACKEND_URL}/img/${info.image}`}
-                    alt={info.image || "Header"}
-                />
-                <img
-                    className="Home-header-logo"
-                    src={`${VITE_BACKEND_URL}/img/${info.logo}`}
-                    alt={info.logo || "Logo"}
-                />
-            </div>
-            <section className="Section-home">
-                <h1 className="Section-home-h1">{info.title}</h1>
-                <p className="Section-home-p">{info.subtitle}</p>
-            </section>
-            <div className="Vertical-line"></div>
+            {pageInfo && <Introduction {...pageInfo} />}
             
             {error ? (
                 <p>{error}</p>
             ) : (
-                info.articles && info.articles.length > 0 ? (
-                    info.articles.map((article, index) => (
+                pageInfo.articles && pageInfo.articles.length > 0 ? (
+                    pageInfo.articles.map((article, index) => (
                         <div key={index}>
                             {index % 2 === 0 ? (
                                 <article className="Section-horizontal">
@@ -51,9 +34,10 @@ const Restaurante = () => {
                         </div>
                     ))
                 ) : (
-                    <p>No sections available.</p>
+                    <p>Información no disponible.</p>
                 )
             )}
+            <div className="p-10"></div>
         </>
     );
 };

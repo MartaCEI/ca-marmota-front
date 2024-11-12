@@ -1,7 +1,8 @@
-{ "pagesInfo": [
+{
+    "pagesInfo": [
         {
             "page": "home",
-            "image": "barracas.jpg",
+            "image": "cabaña.jpg",
             "logo": "logo.png",
             "title": "Bienvenidos a Ca Marmota",
             "subtitle": "Descubre el encanto de la naturaleza y la tranquilidad en Ca Marmota, un acogedor hotel rural enclavado en un entorno pintoresco que te invita a desconectar y reconectar con lo esencial. Rodeado de paisajes serenos, Ca Marmota ofrece el refugio ideal para quienes buscan una escapada relajante en contacto con la naturaleza, sin renunciar a las comodidades modernas. Disfruta de nuestras cómodas habitaciones, vistas inigualables y una cálida hospitalidad que hará de tu estancia una experiencia inolvidable. ¡Ven a vivir momentos únicos y a recargar energías en este paraíso rural!",
@@ -9,22 +10,22 @@
                 {
                     "articleImage": "habitacion.jpg",
                     "articleTitle": "Habitaciones",
-                    "articleSubtitle": "Disfruta de la calidez y comodidad de nuestras habitaciones, diseñadas para que descanses profundamente rodeado de naturaleza. Cada estancia en Ca Marmota ofrece un refugio acogedor en las montañas del interior de Valencia."
+                    "articleSubtitle": "Disfruta de la calidez y comodidad de nuestras habitaciones, diseñadas para que descanses profundamente rodeado de naturaleza. Cada estancia en Ca Marmota ofrece un refugio acogedor en las montañas del interior de Valencia, con detalles rústicos y todas las comodidades necesarias para que te sientas como en casa."
                 },
                 {
                     "articleImage": "gastronomia.jpg",
                     "articleTitle": "Restaurante",
-                    "articleSubtitle": "Saborea la auténtica cocina local en nuestro restaurante, donde ingredientes frescos y recetas tradicionales te invitan a explorar los sabores de la región valenciana en un entorno inigualable."
+                    "articleSubtitle": "Saborea la auténtica cocina local en nuestro restaurante, donde ingredientes frescos y recetas tradicionales te invitan a explorar los sabores de la región valenciana en un entorno inigualable. Nuestros chefs te deleitarán con platos caseros que destacan por su sabor auténtico y su presentación cuidada."
                 },
                 {
                     "articleImage": "piscina.jpg",
                     "articleTitle": "Piscina y Spa",
-                    "articleSubtitle": "Relájate en nuestra piscina con vista panorámica y disfruta de nuestro spa de lujo."
+                    "articleSubtitle": "Relájate en nuestra piscina al aire libre con impresionantes vistas panorámicas a las montañas circundantes y un ambiente de serenidad absoluta. En nuestro spa, disfruta de tratamientos revitalizantes que te ayudarán a desconectar y a recargar energías, en un espacio pensado para tu bienestar."
                 },
                 {
                     "articleImage": "naturaleza.jpg",
                     "articleTitle": "Naturaleza y Aventura",
-                    "articleSubtitle": "Explora los alrededores y disfruta de actividades al aire libre como senderismo y ciclismo."
+                    "articleSubtitle": "Explora los alrededores de Ca Marmota y descubre la belleza de la naturaleza a través de actividades como senderismo, ciclismo y rutas de observación de flora y fauna. Cada paso te acercará más a los paisajes únicos del interior de Valencia, donde la aventura y la tranquilidad se unen en perfecta armonía."
                 }
             ]
         },
@@ -33,46 +34,30 @@
             "image": "habitacion.jpg",
             "logo": "logo.png",
             "title": "Habitaciones",
-            "subtitle": "Descansa en el confort de nuestras habitaciones, rodeadas de naturaleza y equipadas para ofrecerte la tranquilidad que buscas.",
-            "articles": [
-                {
-                    "articleImage": "habitacion_cama.jpg",
-                    "articleTitle": "Habitaciones Dobles",
-                    "articleSubtitle": "Espacios amplios y acogedores que combinan el encanto rústico con la comodidad moderna. Ideales para parejas o amigos que desean relajarse en plena naturaleza."
-                },
-                {
-                    "articleImage": "suite.jpg",
-                    "articleTitle": "Suites con Terraza",
-                    "articleSubtitle": "Disfruta de una estancia exclusiva en nuestras suites con terraza privada, donde podrás contemplar vistas panorámicas de las montañas valencianas desde la comodidad de tu habitación."
-                },
-                {
-                    "articleImage": "vistas.jpg",
-                    "articleTitle": "Vistas a la Montaña",
-                    "articleSubtitle": "Cada habitación ofrece impresionantes vistas a los paisajes montañosos del interior de Valencia, brindando un entorno perfecto para desconectar y recargar energías."
-                }
-            ]
+            "subtitle": "Descansa en el confort de nuestras habitaciones, rodeadas de naturaleza y equipadas para ofrecerte la tranquilidad que buscas. Cada habitación en Ca Marmota está decorada con un estilo rústico y acogedor, con muebles de madera y detalles que reflejan la esencia del entorno natural. Aquí encontrarás el espacio perfecto para relajarte y disfrutar de momentos de paz y serenidad, lejos del bullicio de la vida diaria.",
+            "articles": []
         },
         {
             "page": "restaurante",
             "image": "desayuno.jpg",
             "logo": "logo.png",
             "title": "Restaurante",
-            "subtitle": "Descubre la riqueza culinaria valenciana en nuestro restaurante, que ofrece desayunos, almuerzos y cenas en un entorno natural y acogedor.",
+            "subtitle": "Descubre la riqueza culinaria valenciana en nuestro restaurante, que ofrece desayunos, almuerzos y cenas en un entorno natural y acogedor. Nuestros chefs se inspiran en los sabores locales para crear platos auténticos que reflejan la tradición y cultura de la región. Desde la emblemática paella hasta platos de temporada, cada bocado te conecta con el auténtico sabor valenciano en un ambiente relajado y cálido.",
             "articles": [
                 {
                     "articleImage": "paella.jpg",
                     "articleTitle": "Paellas",
-                    "articleSubtitle": "Vive la experiencia de degustar la auténtica paella valenciana, elaborada con ingredientes frescos de la región y el inconfundible sabor de la tradición mediterránea."
+                    "articleSubtitle": "Vive la experiencia de degustar la auténtica paella valenciana, elaborada con ingredientes frescos de la región y el inconfundible sabor de la tradición mediterránea. Un plato que te sumergirá en la esencia de la cocina local y en el alma de Valencia."
                 },
                 {
                     "articleImage": "esgarraet.jpg",
                     "articleTitle": "Esgarraet",
-                    "articleSubtitle": "Prueba uno de los platos más típicos de la zona, una combinación perfecta de pimientos asados, bacalao y aceite de oliva virgen, servido en un ambiente único."
+                    "articleSubtitle": "Prueba uno de los platos más típicos de la zona, una combinación perfecta de pimientos asados, bacalao y aceite de oliva virgen, servido en un ambiente único. Ideal para acompañar tus comidas con el sabor auténtico de la gastronomía valenciana."
                 },
                 {
                     "articleImage": "vinos.jpg",
                     "articleTitle": "Selección de Vinos",
-                    "articleSubtitle": "Nuestra carta incluye una cuidada selección de vinos locales y nacionales que complementan a la perfección los sabores de la gastronomía valenciana."
+                    "articleSubtitle": "Nuestra carta incluye una cuidada selección de vinos locales y nacionales que complementan a la perfección los sabores de la gastronomía valenciana. Disfruta de un maridaje ideal en cada comida, con etiquetas que destacan por su calidad y tradición."
                 }
             ]
         },
@@ -81,27 +66,27 @@
             "image": "piscina.jpg",
             "logo": "logo.png",
             "title": "Servicios",
-            "subtitle": "Explora una variedad de servicios pensados para que tu estancia en Ca Marmota sea memorable, desde actividades al aire libre hasta relajación en nuestro spa.",
+            "subtitle": "Explora una variedad de servicios pensados para que tu estancia en Ca Marmota sea memorable, desde actividades al aire libre hasta relajación en nuestro spa. Nuestra oferta de servicios incluye todo lo necesario para que disfrutes al máximo de tu tiempo en el hotel, desde excursiones guiadas y paseos a caballo hasta tratamientos de bienestar. Cada detalle está diseñado para ofrecerte una experiencia completa de relajación y conexión con la naturaleza.",
             "articles": [
                 {
                     "articleImage": "pueblo.jpg",
                     "articleTitle": "Turismo por el Pueblo",
-                    "articleSubtitle": "Sumérgete en la vida local y descubre el encanto de los pueblos del interior de Valencia, con sus calles empedradas y una cultura rica en tradiciones."
+                    "articleSubtitle": "Sumérgete en la vida local y descubre el encanto de los pueblos del interior de Valencia, con sus calles empedradas y una cultura rica en tradiciones. Explora su arquitectura única y disfruta de la hospitalidad de sus gentes."
                 },
                 {
                     "articleImage": "naturaleza.jpg",
                     "articleTitle": "Paseos a Caballo",
-                    "articleSubtitle": "Explora los alrededores a caballo y conecta con la naturaleza mientras recorres senderos que te llevan a través de paisajes de ensueño."
+                    "articleSubtitle": "Explora los alrededores a caballo y conecta con la naturaleza mientras recorres senderos que te llevan a través de paisajes de ensueño. Una experiencia única que te permitirá disfrutar de la serenidad del entorno al ritmo de la vida rural."
                 },
                 {
                     "articleImage": "piscina2.jpg",
                     "articleTitle": "Piscina Panorámica",
-                    "articleSubtitle": "Relájate en nuestra piscina al aire libre con vistas a las montañas, ideal para refrescarte en verano o simplemente disfrutar del paisaje."
+                    "articleSubtitle": "Relájate en nuestra piscina al aire libre con vistas a las montañas, ideal para refrescarte en verano o simplemente disfrutar del paisaje. Un espacio donde podrás desconectar y vivir momentos de paz rodeado de naturaleza."
                 },
                 {
                     "articleImage": "spa.jpg",
                     "articleTitle": "Spa y Bienestar",
-                    "articleSubtitle": "Revitaliza tu cuerpo y mente en nuestro spa, que ofrece una experiencia de relajación completa con tratamientos naturales y un ambiente sereno."
+                    "articleSubtitle": "Revitaliza tu cuerpo y mente en nuestro spa, que ofrece una experiencia de relajación completa con tratamientos naturales y un ambiente sereno. Desde masajes hasta terapias de bienestar, todo pensado para tu descanso."
                 }
             ]
         }

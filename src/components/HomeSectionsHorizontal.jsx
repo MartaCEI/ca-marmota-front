@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const HomeSectionsHorizontal = ({article}) => {
     const { VITE_BACKEND_URL } = import.meta.env;
     const { articleTitle, articleSubtitle, articleImage } = article;
@@ -13,7 +15,14 @@ export const HomeSectionsHorizontal = ({article}) => {
                             <h2 className="Horizontal-h2">{articleTitle}</h2>
                             <div className="Horizontal-line"></div>
                             <p className="Horizontal-p">{articleSubtitle}</p>
-                            <button className="Horizontal-btn">Ver mas</button>
+                            {/* Muestra el link a las habitaciones solo caundo el titulo del article es habiatines */}
+                            {articleTitle === "Habitaciones" && (
+                                <Link to="/rooms" className="Horizontal-btn">Ver mas</Link>
+                            )}
+                            {/* Muestra el link a los servicios solo caundo el titulo del article es Piscina y Spa */}
+                            {articleTitle === "Piscina y Spa" && (
+                                <Link to="/servicios" className="Horizontal-btn">Ver mas</Link>
+                            )}
                         </div>
                     </div>
                 </div>

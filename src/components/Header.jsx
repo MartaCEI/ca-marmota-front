@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useUser } from '@/hooks/useUser';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export const Header = () => {
     const { user, logout } = useUser();
@@ -85,10 +85,14 @@ export const Header = () => {
                     </ul>
                 </div>
             </nav>
-            
-            <div className="Header-btn" onClick={handleOnClick}>
-                <button className={`Header-btn-menu ${isMenuOpen ? 'isHidden' : ''}`}>Menu &#8811;</button>
-                <button className={`Header-btn-cerrar ${isMenuOpen ? '' : 'isHidden'}`}>Cerrar &#8810;</button>
+            <div className='Header-menu'>
+                <div className="Header-btn">
+                    <Link to="/rooms" className='Header-btn-Habitaciones'>Habitaciones &#8811;</Link>
+                </div>
+                <div className="Header-btn" onClick={handleOnClick}>
+                    <button className={`Header-btn-menu ${isMenuOpen ? 'isHidden' : ''}`}>Menu &#8811;</button>
+                    <button className={`Header-btn-cerrar ${isMenuOpen ? '' : 'isHidden'}`}>Cerrar &#8810;</button>
+                </div>
             </div>
         </header>
     );
