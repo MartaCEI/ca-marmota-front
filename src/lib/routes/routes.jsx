@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, ScrollRestoration } from "react-router-dom";
 import Layout from "@/Layout";
 import ErrorPage from "@/ErrorPage";
 import Home from "@/pages/Home";
@@ -12,41 +12,45 @@ import Booking from "@/pages/Booking";
 import RoomDetails from "@/pages/RoomDetails";
 import MyBookigns from "@/pages/MyBookings";
 import UpdateRooms from "@/pages/UpdateRoom";
-import Prueba_popup from "@/pages/Prueba_popup";
 import Restaurante from "../../pages/Restaurante";
 
-export const router = createBrowserRouter (
+export const router = createBrowserRouter(
     [
         {
             path: "/",
-            element: <Layout />,
+            element: (
+                <>
+                    <ScrollRestoration /> {/* Reinicia automáticamente el scroll */}
+                    <Layout />
+                </>
+            ),
             errorElement: <ErrorPage />,
             children: [
-                { 
+                {
                     path: "/",
                     element: <Home />
                 },
-                { 
+                {
                     path: "/admin",
                     element: <PrivateRoute><Admin /></PrivateRoute>
                 },
-                { 
+                {
                     path: "/servicios",
                     element: <Services />
                 },
-                { 
+                {
                     path: "/restaurante",
                     element: <Restaurante />
                 },
                 {
-                    path:"/booking/:roomId/:checkIn/:checkOut", 
+                    path: "/booking/:roomId/:checkIn/:checkOut",
                     element: <PrivateRoute><Booking /></PrivateRoute>
                 },
                 {
-                    path:"/myBookings/:id", 
+                    path: "/myBookings/:id",
                     element: <PrivateRoute><MyBookigns /></PrivateRoute>
                 },
-                { 
+                {
                     path: "/rooms",
                     element: <Rooms />
                 },
@@ -54,7 +58,7 @@ export const router = createBrowserRouter (
                     path: "/room/:id",
                     element: <RoomDetails />
                 },
-                {   
+                {
                     path: "/UpdateRoom/:id",
                     element: <UpdateRooms />
                 },
@@ -65,7 +69,7 @@ export const router = createBrowserRouter (
                 {
                     path: "/register",
                     element: <Register />
-                },  
+                },
             ]
         }
     ]

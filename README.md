@@ -638,5 +638,49 @@ const register = async (userData) => {
 
     // Un avez con los datos los guardo en setUser
     setUser(responseData);
+};
+```
 
-    ```
+### RoomsAvailability
+Consulta MongoDB:
+Al filtrar directamente en la base de datos, solo se traen las habitaciones que cumplen con la condición, lo que reduce el uso de memoria y mejora el rendimiento.
+Se usa el operador $not con $elemMatch para verificar que no haya reservas (currentBookings) que tengan un solapamiento con las fechas solicitadas.
+$or maneja dos casos:
+Habitaciones que no tienen reservas (currentBookings no existe o está vacío).
+Habitaciones cuyas reservas no se solapan con las fechas dadas.
+
+```js
+import Room from '../models/Room.js';
+
+export const roomsAvailability = async (req, res, next) => {
+    const { checkIn, checkOut } = req.body;
+
+    try {
+        // Convertir las fechas a objetos Date para comparación
+        const checkInDate = new Date(checkIn);
+        const checkOutDate = new Date(checkOut);
+
+        // Filtrar habitaciones directamente en la base de datos
+        const availableRooms = await Room.find({
+            $or: [
+                { currentBookings: { $exists: false } }, // Habitaciones sin reservas
+                {
+                    currentBookings: {
+                        $not: {
+                            $elemMatch: {
+                                // Buscar reservas con solapamiento
+                                checkIn: { $lt: checkOutDate }, // checkIn < checkOut (solapamiento al inicio)
+                                checkOut: { $gt: checkInDate } // checkOut > checkIn (solapamiento al final)
+                            }
+                        }
+                    }
+                }
+            ]
+        });
+
+        res.json(availableRooms);
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener las habitaciones', error });
+    }
+};
+```

@@ -82,7 +82,20 @@ const MyBookings = () => {
                         </thead>
                         <tbody>
                             {bookings.map(({ _id, roomId, checkIn, checkOut, totalAmount, totalNights, transactionId, status }) => (
-                                status === 'cancelled' ? <p className="py-2 px-4">Reserva cancelada</p> : (
+                                status === 'cancelled' ? (
+                                    <tr key={transactionId} className="border-b hover:bg-gray-50">
+                                        <td className="py-2 px-4 border-r">{roomId.roomName}</td>
+                                        <td className="py-2 px-4 border-r">{formatDate(checkIn)}</td>
+                                        <td className="py-2 px-4">{formatDate(checkOut)}</td>
+                                        <td className="py-2 px-4">{roomId.rentPerDay}</td>
+                                        <td className="py-2 px-4">{totalAmount}</td>
+                                        <td className="py-2 px-4">{totalNights}</td>
+                                        <td className="py-2 px-4">{transactionId}</td>
+                                        <td className="py-2 px-4">
+                                        <p className="py-2 px-4">Reserva cancelada</p>
+                                        </td>
+                                    </tr>
+                                ) : (
                                     <tr key={transactionId} className="border-b hover:bg-gray-50">
                                         <td className="py-2 px-4 border-r">{roomId.roomName}</td>
                                         <td className="py-2 px-4 border-r">{formatDate(checkIn)}</td>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Amenity } from '../components/Amenity';
+import { Amenity } from '@/components/Amenity';
 import { Link } from 'react-router-dom';
+import GaleriaContainer from '@/components/GaleriaContainer';
 
 const RoomDetails = () => {
     const { id } = useParams();
@@ -25,7 +26,7 @@ const RoomDetails = () => {
         }
     };
 
-    const { imagesUrls = [], roomName, rentPerDay, maxCount, type, description, amenities = [] } = room;
+    const { imagesUrls = [], roomName, rentPerDay, maxCount, type, bathRoom, description, amenities = [] } = room;
 
     return (
         <>
@@ -40,23 +41,36 @@ const RoomDetails = () => {
                             <h2 className="Vertical-h2">{roomName}</h2>
                             <div className="Vertical-HorizontalLine"></div>
                             <p className="Horizontal-p">{description}</p>
-                            <p className="Horizontal-p">Por dia: ${rentPerDay}</p>
-                            <p className="Horizontal-p">Nº de personas: {maxCount}</p>
-                            <p className="Horizontal-p">Tipo: {type}</p>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <p className="p">Amenities: </p>
-            <ul className='Amenity-div'>
-                {
-                    amenities.map((amenity, index) => (
-                        <Amenity key={index} amenity={amenity} />
-                    ))
-                }
-            </ul>
-            <Link className="Vertical-btn" to="/rooms">Volver</Link>
-            <div className="Vertical-div-inner"></div>
+
+            <div className='Amenity-div'>
+                <div className="Amenity-div-inner">
+                    <div className="Amenity-div-left">
+                        <ul className='Amenity-ul'>
+                            {
+                                amenities.map((amenity, index) => (
+                                    <Amenity key={index} amenity={amenity} />
+                                ))
+                            }
+                        </ul>
+                    </div>
+                    <div className="Amenity-div-right">
+                        <p>Habitación individual</p>
+                        <p>Baño {bathRoom}</p>
+                        <p>Nº de personas: {maxCount}</p>
+                        <p>{type}</p>
+                        <p>{rentPerDay}€ por noche</p>
+                    </div>
+                </div>
+            </div>
+                <GaleriaContainer imagesUrls={imagesUrls} roomName={roomName} />
+            <div className='Amenity-div-btn'>
+                <Link className="Amenity-btn" to="/rooms">Volver</Link>
+            </div>
         </>
     );
 }

@@ -120,7 +120,7 @@ const Admin = () => {
                 <p className="mb-4"><strong>Lista de Bookings Confirmados</strong></p>
                 {bookings.filter(b => b.status === "booked").length > 0 ? (
                     <div className="overflow-x-auto">
-                        <table className="min-w-full bg-white border border-gray-200">
+                        <table className="min-w-full bg-white border border-gray-200 table">
                             <thead>
                                 <tr className="bg-gray-100 border-b">
                                     <th className="py-2 px-4 border-r">Habitación</th>

@@ -1,7 +1,7 @@
 export const Amenity = ({ amenity }) => {
     return (
         <>
-            <p className="p"> {amenity}</p>
+            <li className="p"> {amenity}</li>
         </>
     );
 }
