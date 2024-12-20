@@ -1,17 +1,17 @@
 const Introduction = ({image, logo, title, subtitle}) => {
-    const { VITE_BACKEND_URL } = import.meta.env;
+    const { VITE_FRONTEND_IMG } = import.meta.env;
 
     return (
         <>
             <div className="Home-header">
                 <img
                     className="Home-header-img"
-                    src={`${VITE_BACKEND_URL}/img/${image}`}
+                    src={`${VITE_FRONTEND_IMG}/${image}`}
                     alt={image || "Header"}
                 />
                 <img
                     className="Home-header-logo"
-                    src={`${VITE_BACKEND_URL}/img/${logo}`}
+                    src={`${VITE_FRONTEND_IMG}/${logo}`}
                     alt="Logo"
                 />
             </div>

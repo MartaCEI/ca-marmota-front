@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 export const HomeSectionsVertical = ({article}) => {
-    const { VITE_BACKEND_URL } = import.meta.env;
+    const { VITE_FRONTEND_IMG } = import.meta.env;
     const { articleTitle, articleSubtitle, articleImage } = article;
     
     return (
@@ -9,7 +9,7 @@ export const HomeSectionsVertical = ({article}) => {
             <div className="Vertical-div">
                 <div className="Vertical-div-container-outter">
                     <div className="Vertical-div-container-img">
-                        <img className="Vertical-img" src={`${VITE_BACKEND_URL}/img/${articleImage}`} alt={articleImage} />
+                        <img className="Vertical-img" src={`${VITE_FRONTEND_IMG}/${articleImage}`} alt={articleImage} />
                         <div className="Vertical-img-cover"></div>
                     </div>
                     <div className="Vertical-div-grid">

@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
 export const HomeSectionsHorizontal = ({article}) => {
-    const { VITE_BACKEND_URL } = import.meta.env;
+    const { VITE_FRONTEND_IMG } = import.meta.env;
     const { articleTitle, articleSubtitle, articleImage } = article;
     
     return (
         <>
             <div className="Horizontal-div">
-                <img className="Horizontal-img" src={`${VITE_BACKEND_URL}/img/${articleImage}`} alt={articleImage} />
+                <img className="Horizontal-img" src={`${VITE_FRONTEND_IMG}/${articleImage}`} alt={articleImage} />
                 <div className="Horizontal-div-container">
                     <div className="Horizontal-div-grid">
                         <div className="Horizontal-div-inner"></div>

@@ -2,7 +2,7 @@
     "pagesInfo": [
         {
             "page": "home",
-            "image": "cabaña.jpg",
+            "image": "cabana.jpg",
             "logo": "logo.png",
             "title": "Bienvenidos a Ca Marmota",
             "subtitle": "Descubre el encanto de la naturaleza y la tranquilidad en Ca Marmota, un acogedor hotel rural enclavado en un entorno pintoresco que te invita a desconectar y reconectar con lo esencial. Rodeado de paisajes serenos, Ca Marmota ofrece el refugio ideal para quienes buscan una escapada relajante en contacto con la naturaleza, sin renunciar a las comodidades modernas. Disfruta de nuestras cómodas habitaciones, vistas inigualables y una cálida hospitalidad que hará de tu estancia una experiencia inolvidable. ¡Ven a vivir momentos únicos y a recargar energías en este paraíso rural!",
@@ -51,7 +51,7 @@
                 },
                 {
                     "articleImage": "esgarraet.jpg",
-                    "articleTitle": "Esgarraet",
+                    "articleTitle": "Platos típicos",
                     "articleSubtitle": "Prueba uno de los platos más típicos de la zona, una combinación perfecta de pimientos asados, bacalao y aceite de oliva virgen, servido en un ambiente único. Ideal para acompañar tus comidas con el sabor auténtico de la gastronomía valenciana."
                 },
                 {

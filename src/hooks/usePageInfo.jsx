@@ -4,7 +4,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 const PageInfoContext = createContext();
 
 export function PageInfoProvider({ children, pageName }) {
-    const { VITE_API_URL } = import.meta.env;
+    const { VITE_FRONTEND_URL } = import.meta.env;
     const [pageInfo, setPageInfo] = useState({
         page: "",
         image: "",
@@ -24,23 +24,19 @@ export function PageInfoProvider({ children, pageName }) {
     // Función para obtener la información de la página
     const fetchPageInfo = async (pageName) => {
         try {
-            const response = await fetch(`${VITE_API_URL}/page`);
-            const objeto = await response.json();
-            console.log("Datos recibidos:", objeto);
-
-            if (objeto.status === "error") {
-                setError(`Tuvimos un error: ${objeto.msg}`);
-                return;
+            const respuesta = await fetch(VITE_FRONTEND_URL);
+            if (!respuesta.ok) {
+                throw new Error(`Error ${respuesta.status}: No se pudo cargar la información`);
             }
-
-            const pageData = objeto.data.find(item => item.page === pageName);
-            setPageInfo(pageData || {}); // Establece un objeto vacío si no encuentra coincidencia
-
+            const data = await respuesta.json();
+            const pageData = data.pagesInfo.find((page) => page.page === pageName);
+            if (pageData) {
+                setPageInfo(pageData);
+            } else {
+                throw new Error("Página no encontrada");
+            }
         } catch (error) {
-            if (error.name !== 'AbortError') {
-                console.log("Error al hacer el fetch de los datos:", error);
-                setError("Error al cargar los datos");
-            }
+            setError(error.message);
         }
     };
 

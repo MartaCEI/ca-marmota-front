@@ -52,7 +52,6 @@ function Rooms() {
         }
     }
 
-
     return (
         <>
             {pageInfo && <Introduction {...pageInfo} />}
