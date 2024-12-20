@@ -10,7 +10,7 @@ const RoomCard = ({ _id, imagesUrls, roomName, rentPerDay, maxCount, type, descr
         <div className="Vertical-div">
                 <div className="Vertical-div-container-outter">
                     <div className="Vertical-div-container-img">
-                        <img className="Vertical-img" src={`${VITE_BACKEND_URL}/img/habitaciones/${imagesUrls[0]}`} alt={roomName} />
+                        <img className="Vertical-img" src={`${VITE_BACKEND_URL}/img/${imagesUrls[0]}`} alt={roomName} />
                         <div className="Vertical-img-cover"></div>
                     </div>
                         <div className="Vertical-div-grid">

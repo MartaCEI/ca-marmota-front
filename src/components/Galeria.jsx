@@ -6,7 +6,7 @@ export const Galeria = ({ imageUrl, roomName, openPopup }) => {
     return (
         <img 
             className="Galeria-img" 
-            src={`${VITE_BACKEND_URL}/img/habitaciones/${imageUrl}`} 
+            src={`${VITE_BACKEND_URL}/img/${imageUrl}`} 
             alt={roomName} 
             onClick={() => openPopup(imageUrl)} // Abre el popup cuando se hace clic
         />

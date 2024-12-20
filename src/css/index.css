@@ -81,6 +81,7 @@ body {
   width: 100%;
   flex: 1 1 0%;
   background-color: var(--backgrundColor-primary);
+  padding: 0 0 2rem 0;
 }
 
 /* Fin reset */
@@ -102,8 +103,6 @@ a {
   cursor: pointer;
   text-transform: uppercase;
 }
-
-
 
 /* CSS del componente Header.jsx */
 .Header {

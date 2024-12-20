@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Amenity } from '@/components/Amenity';
 import { useUser } from '@/hooks/useUser';
 import { formatDate } from '@/utils/date';
 
@@ -96,22 +95,35 @@ function Booking() {
     // Asegúrate de que room no sea null
     if (!room) return <div>No se encontró la habitación.</div>;
 
-    const { imagesUrls = [], roomName, rentPerDay, maxCount, type, description, amenities = [] } = room;
+    const { imagesUrls = [], roomName, rentPerDay, maxCount, type, description, amenities = [], bathRoom } = room;
 
     return (
         <>
-            <img className="Vertical-img" src={`${VITE_BACKEND_URL}/img/habitaciones/${imagesUrls[0]}`} alt={roomName} />
-            <h1 className='text-center'>Datos de la reserva:</h1>
-            <p className='text-center'>Habitacione a nombre de: {user.name}</p>
-            <h2 className='text-center'>{roomName}</h2>
-            <p className='text-center'>Max count: {maxCount}</p>
-            <p className='text-center'>Rent per day: ${rentPerDay}</p>
-            <p className='text-center'>Type: {type}</p>
-            <p className='text-center'>Total de noches: {totalNights}</p>
-            <p className='text-center'>Monto total: ${totalAmount}</p>
-            <p className='text-center'>CheckIn: {formatDate(checkIn)}</p>
-            <p className='text-center'>CheckOut: {formatDate(checkOut)}</p>
-            <button className='Nav-a-user text-center' onClick={handelOnClick}>Reservar</button>
+                <h1 className="Section-home-h1">Datos de la reserva</h1>
+                <div className="Vertical-div">
+                <div className="Vertical-div-container-outter">
+                    <div className="Vertical-div-container-img">
+                        <img className="Vertical-img" src={`${VITE_BACKEND_URL}/img/${imagesUrls[0]}`} alt={roomName} />
+                        <div className="Vertical-img-cover"></div>
+                    </div>
+                        <div className="Vertical-div-grid">
+                            <div className="Vertical-div-inner text">
+                                    <p className="Horizontal-p">Para: {user.name}</p>
+                                    <p className="Horizontal-p">{roomName}</p>
+                                    <p className='Horizontal-p'>Entarda el dia {formatDate(checkIn)}</p>
+                                    <p className='Horizontal-p'>Salida el día {formatDate(checkOut)}</p>
+                                    <p className="Horizontal-p">{rentPerDay}€ por noche</p>
+                                    <p className="Horizontal-p">{totalNights} noches</p>
+                                <div className="Vertical-HorizontalLine"></div>
+                                    <p className="Horizontal-p">Total: {totalAmount}€</p>
+                                    <div className='Rooms-div-btn'>
+                                        <button className='Nav-a-user text-center' onClick={handelOnClick}>Reservar</button>
+                                    </div>
+                            </div>
+                        <div className="Vertical-div-inner"></div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }

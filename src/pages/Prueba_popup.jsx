@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RoomUpdate } from '@/components/RoomUpdate';
-import '@/css/Admin.css';
+import '@/css/admin.css';
 
 const Prueba_popup = () => {
     const URL = import.meta.env.VITE_API_URL;
