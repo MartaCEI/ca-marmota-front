@@ -41,7 +41,6 @@ const Login = () => {
         setFormData({ ...formData, [name]: value });
     }
 
-    // si existe un user llevame a admin, sino al home (antes del return)
     return (
         <div className="Register-container">
             <h1 className="Register-h1">Login</h1>

@@ -20,7 +20,8 @@ export const router = createBrowserRouter(
             path: "/",
             element: (
                 <>
-                    <ScrollRestoration /> {/* Reinicia automáticamente el scroll */}
+                    {/* Restaura la posición del desplazamiento (scroll) de una página cuando el usuario navega entre rutas */}
+                    <ScrollRestoration /> {/* Página previa, mantiene el scroll original. Página sigueinte, scroll arriba */}
                     <Layout />
                 </>
             ),

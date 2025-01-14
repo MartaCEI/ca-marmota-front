@@ -17,7 +17,8 @@ const Register = () => {
         image: 'https://picsum.photos/200'
     });
 
-    // Cada vez que cambia formData se ejecuta el useEffect. Cuando todas son verdaderas, se habilita el botón de registro.
+    // Cada vez que cambia formData se ejecuta el useEffect. 
+    // Cuando todas son verdaderas, se habilita el botón de registro.
     useEffect(() => {
         setCanSubmit(formData.name && formData.username &&
             formData.password && formData.cPassword &&
@@ -112,10 +113,11 @@ const Register = () => {
                     <label className="Register-label" htmlFor="tyc">Acepto los términos y condiciones</label>
                 </div>
 
-                {canSubmit ? <input type="submit" value="Registro" />
-                    : <button disabled>Registro</button>}
-
-                <pre>{JSON.stringify(formData, null, 2)}</pre>
+                {canSubmit ? <input className='Login-btn' type="submit" value="Registro" />
+                    : <button className='Login-btn-disabled' disabled>Registro</button>}
+                    
+                {/* pre sirve para mostrar el contenido de formData en formato JSON. */}
+                {/* <pre>{JSON.stringify(formData, null, 2)}</pre> */}
             </form>
         </div>
     );

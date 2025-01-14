@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { usePageInfo } from "../hooks/usePageInfo"; // Asume que este hook ya está definido
+import { usePageInfo } from "../hooks/usePageInfo";
 import Introduction from "./Introduction";
 import {HomeSectionsHorizontal} from "./HomeSectionsHorizontal";
 import {HomeSectionsVertical} from "./HomeSectionsVertical";

@@ -1,23 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
-
-// Crear un contexto de usuario
-const UserContext = createContext();
-
-// Crear un provider y exportarlo para usarlo en main.js
-export function UserProvider({ children }) {
-    const [user, setUser] = useState(null);
-
-    const { VITE_API_URL, VITE_BACKEND_URL } = import.meta.env;
-
-    // Ver si ya estoy logueado (localStorage cache)
-    useEffect(() => {
-        const storedUser = localStorage.getItem("user")
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-    }, []);
-
-    // Función login
+```js
     const login = async (userData) => {
         try {
             // Llamamos al backend con el fetch
@@ -55,7 +36,6 @@ export function UserProvider({ children }) {
         }
     };
 
-    // Función register
     const register = async (userData) => {
     try {
         // Llamamos al backend con el fetch
@@ -85,31 +65,22 @@ export function UserProvider({ children }) {
         localStorage.setItem('token', responseData.token);
 
         return null;
-        } catch (e) {
-                console.error('Error:', e);
-                // Devolvemos un mensaje de error genérico.
-                return "Error en el servidor";
-        }
-    };
+    } catch (e) {
+            console.error('Error:', e);
+            // Devolvemos un mensaje de error genérico.
+            return "Error en el servidor";
+    }
+};
 
-    // Función logout
-    const logout = () => {
-        // Eliminamos el usuario del localStorage y el token.
-        localStorage.removeItem("user");
-        localStorage.removeItem('token');
-        // Actualizamos el estado global/local a `null`.
-        setUser(null);
-        console.log("User logged out");
-    };
 
-return (
-    <UserContext.Provider value={{ user, login, logout, register }}>
-        {children}
-    </UserContext.Provider>
-);
-}
+const logout = () => {
+    // Eliminamos el usuario del localStorage y el token.
+    localStorage.removeItem("user");
+    localStorage.removeItem('token');
+    // Actualizamos el estado global/local a `null`.
+    setUser(null);
+    console.log("User logged out");
+};
 
-// Crear un custom hook para usar el contexto de usuario
-export function useUser() {
-    return useContext(UserContext);
-}
+
+```

@@ -9,7 +9,7 @@ export const Header = () => {
 
     useEffect(() => {
         if (user) {
-            console.log("Usuario logueado:", user);  // Verificar si isAdmin está presente
+            console.log("Usuario logueado:", user);
         } else {
             console.log("No hay usuario logueado");
         }
