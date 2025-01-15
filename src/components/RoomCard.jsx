@@ -33,9 +33,8 @@ const RoomCard = ({ _id, imagesUrls, roomName, rentPerDay, maxCount, type, descr
                                                 <Link className="Vertical-btn" to="/login">Login</Link>
                                             )
                                         )}
-                                        {/* // Crear página roomDetails en rutas */}
                                         <Link to={`/room/${_id}`}>
-                                            <button className="Vertical-btn">más detalles</button>
+                                            <button className="Vertical-btn">Más detalles</button>
                                         </Link>
                                     </div>
                             </div>

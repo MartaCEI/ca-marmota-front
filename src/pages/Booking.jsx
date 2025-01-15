@@ -117,7 +117,7 @@ function Booking() {
                                 <div className="Vertical-HorizontalLine"></div>
                                     <p className="Horizontal-p">Total: {totalAmount}€</p>
                                     <div className='Rooms-div-btn'>
-                                        <button className='Nav-a-user text-center' onClick={handelOnClick}>Reservar</button>
+                                        <button className='Nav-a-user text-center' onClick={handelOnClick}>Proceder con la reserva</button>
                                     </div>
                             </div>
                         <div className="Vertical-div-inner"></div>

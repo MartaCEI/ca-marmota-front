@@ -17,11 +17,11 @@ export const HomeSectionsVertical = ({article}) => {
                             <h2 className="Vertical-h2">{articleTitle}</h2>
                             <div className="Vertical-HorizontalLine"></div>
                             <p className="Vertical-p">{articleSubtitle}</p>
-                            {/* Muestra el link a las habitaciones solo caundo el titulo del article es habiatines */}
+                            {/* Muestra el link a las habitaciones solo caundo el titulo del article es Restaurante*/}
                         {articleTitle === "Restaurante" && (
                             <Link to="/restaurante" className="Vertical-btn">Ver mas</Link>
                         )}
-                        {/* Muestra el link a los servicios solo caundo el titulo del article es Piscina y Spa */}
+                        {/* Muestra el link a los servicios solo caundo el titulo del article es Naturaleza y Aventura */}
                         {articleTitle === "Naturaleza y Aventura" && (
                             <Link to="/servicios" className="Vertical-btn">Ver mas</Link>
                         )}
