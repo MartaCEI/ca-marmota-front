@@ -35,13 +35,6 @@
     gap: 1rem;
 }
 
-.Register-label {
-
-}
-
-.Register-input {
-
-}
 
 .Login-form {
     display: flex;
@@ -68,4 +61,76 @@
     border: none;
     padding: 0.5rem 1rem;
     cursor: not-allowed;
+}
+
+
+
+
+
+.Modal-background {
+    position: fixed;
+    inset: 0; 
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Modal-container {
+    width: 80%;
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.close-button {
+    color: #f56565; /* Color rojo (equivalente a text-red-500) */
+    font-weight: bold; /* Texto en negrita */
+    float: right; /* Botón alineado a la derecha */
+    background: none; /* Sin fondo */
+    border: none; /* Sin bordes */
+    cursor: pointer; /* Cambiar el cursor al pasar el ratón */
+}
+
+.close-button:hover {
+    color: #e53e3e; /* Rojo más oscuro al pasar el ratón */
+}
+
+
+.Modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+}
+
+.Modal-div {
+    display: flex;
+    flex-direction: column;
+    ;
+}
+
+.Modal-label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.Modal-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.Modal-input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.Modal-textarea {
+    min-height: 10rem;
+    resize: vertical; /* Permite ajustar el tamaño vertical del textarea */
 }

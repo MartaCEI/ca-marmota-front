@@ -7,10 +7,10 @@ const Popup = ({ imageUrl, roomName, closePopup }) => {
             <div className="Popup-Galeria-Content" onClick={(e) => e.stopPropagation()}>
                 <img 
                     className="Popup-Galeria-Img" 
-                    src={`${import.meta.env.VITE_BACKEND_URL}/img/habitaciones/${imageUrl}`} 
+                    src={`${import.meta.env.VITE_BACKEND_URL}/img//${imageUrl}`} 
                     alt={roomName} 
                 />
-                <button className="Popup-Galeria-CloseBtn" onClick={closePopup}>Cerrar</button>
+                <button className="Popup-Galeria-CloseBtn" onClick={closePopup}>X</button>
             </div>
         </div>
     );

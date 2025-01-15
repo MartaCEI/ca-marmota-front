@@ -10,7 +10,7 @@ const MyBookings = () => {
 
     useEffect(() => {
         getBookingsById();
-    }, []);
+    }, [bookings]);
 
     const { VITE_API_URL } = import.meta.env;
 

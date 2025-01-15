@@ -8,7 +8,6 @@ function Booking() {
     const { user } = useUser();
     const { roomId, checkIn, checkOut } = useParams(); // Obtiene roomId, checkIn y checkOut de la URL
     const [room, setRoom] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [totalNights, setTotalNights] = useState(0);
     const [totalAmount, setTotalAmount] = useState(0);
@@ -28,9 +27,7 @@ function Booking() {
             setRoom(data);
         } catch (error) {
             setError(error.message);
-        } finally {
-            setLoading(false); // Asegúrate de establecer loading en false al final
-        }
+        } 
     };
 
     // Calcular el total de noches y el monto total
@@ -48,14 +45,10 @@ function Booking() {
         try {
             const token = localStorage.getItem('token');
             const userId = user._id 
-    
-            console.log('User ID:', userId); // Verifica el valor de userId
-    
             if (!userId) {
                 alert('Error: No se encontró el usuario. Por favor, inicie sesión.');
                 return;
             }
-
             const response = await fetch(`${VITE_API_URL}/booking`, {
                 method: 'POST',
                 headers: {
@@ -71,9 +64,7 @@ function Booking() {
                     totalNights,
                 })
             });
-
             const data = await response.json();
-
             if (response.ok) {
                 alert('Reserva exitosa');
             } else {
@@ -108,16 +99,16 @@ function Booking() {
                     </div>
                         <div className="Vertical-div-grid">
                             <div className="Vertical-div-inner text">
-                                    <p className="Horizontal-p">Para: {user.name}</p>
+                                    <p className="Horizontal-p">Nombre: {user.name}</p>
                                     <p className="Horizontal-p">{roomName}</p>
-                                    <p className='Horizontal-p'>Entarda el dia {formatDate(checkIn)}</p>
+                                    <p className='Horizontal-p'>Entarda el día {formatDate(checkIn)}</p>
                                     <p className='Horizontal-p'>Salida el día {formatDate(checkOut)}</p>
                                     <p className="Horizontal-p">{rentPerDay}€ por noche</p>
                                     <p className="Horizontal-p">{totalNights} noches</p>
                                 <div className="Vertical-HorizontalLine"></div>
                                     <p className="Horizontal-p">Total: {totalAmount}€</p>
                                     <div className='Rooms-div-btn'>
-                                        <button className='Nav-a-user text-center' onClick={handelOnClick}>Proceder con la reserva</button>
+                                        <button className='Nav-a-user text-center' onClick={handelOnClick}>Reservar habitación</button>
                                     </div>
                             </div>
                         <div className="Vertical-div-inner"></div>

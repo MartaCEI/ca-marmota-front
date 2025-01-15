@@ -11,8 +11,8 @@ import { PrivateRoute } from "@/components/PrivateRoute";
 import Booking from "@/pages/Booking";
 import RoomDetails from "@/pages/RoomDetails";
 import MyBookigns from "@/pages/MyBookings";
-import UpdateRooms from "@/pages/UpdateRoom";
 import Restaurante from "../../pages/Restaurante";
+import { RoomUpdate } from "../../components/RoomUpdate";
 
 export const router = createBrowserRouter(
     [
@@ -61,7 +61,7 @@ export const router = createBrowserRouter(
                 },
                 {
                     path: "/UpdateRoom/:id",
-                    element: <UpdateRooms />
+                    element: <RoomUpdate />
                 },
                 {
                     path: "/login",

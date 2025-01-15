@@ -4,7 +4,9 @@ export const RoomUpdate = ({ roomId, onClose }) => {
     const [roomForm, setRoomForm] = useState({
         roomName: '',
         description: '',
-        rentPerDay: ''
+        rentPerDay: '',
+        maxCount: '',
+        type: ''
     });
 
     const { VITE_API_URL } = import.meta.env;
@@ -22,7 +24,9 @@ export const RoomUpdate = ({ roomId, onClose }) => {
             setRoomForm({
                 roomName: data.roomName || '',
                 description: data.description || '',
-                rentPerDay: data.rentPerDay || ''
+                rentPerDay: data.rentPerDay || '',
+                maxCount: data.maxCount || '',
+                type: data.type || ''
             });
         } catch (error) {
             console.error('Error al cargar los datos de la habitación:', error);
@@ -50,10 +54,10 @@ export const RoomUpdate = ({ roomId, onClose }) => {
                 body: JSON.stringify(roomForm)
             });
             if (response.ok) {
-                alert('Room updated successfully');
+                alert('La habitación se ha actualizado correctamente');
                 onClose();
             } else {
-                alert('Error updating room');
+                alert('Error en la actualización de la habitación');
             }
         } catch (error) {
             console.error('Error en la actualización de la habitación:', error);
@@ -61,11 +65,11 @@ export const RoomUpdate = ({ roomId, onClose }) => {
     };
 
     return (
-        <form className="PopUp-form" onSubmit={handleUpdate}>
-            <div className="PopUp-div">
-                <label className="PopUp-label" htmlFor="roomName">Room Name:</label>
+        <form className="Modal-form" onSubmit={handleUpdate}>
+            <div className="Modal-div">
+                <label className="Modal-label" htmlFor="roomName">Habitación:</label>
                 <input
-                    className="PopUp-input"
+                    className="Modal-input"
                     type="text"
                     id="roomName"
                     name="roomName"
@@ -73,10 +77,10 @@ export const RoomUpdate = ({ roomId, onClose }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="PopUp-div">
-                <label className="PopUp-label" htmlFor="description">Description:</label>
-                <input
-                    className="PopUp-input"
+            <div className="Modal-div">
+                <label className="Modal-label" htmlFor="description">Descripción:</label>
+                <textarea
+                    className="Modal-input"
                     type="text"
                     id="description"
                     name="description"
@@ -84,10 +88,10 @@ export const RoomUpdate = ({ roomId, onClose }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="PopUp-div">
-                <label className="PopUp-label" htmlFor="rentPerDay">Rent Per Day:</label>
+            <div className="Modal-div">
+                <label className="Modal-label" htmlFor="rentPerDay">Precio por noche:</label>
                 <input
-                    className="PopUp-input"
+                    className="Modal-input"
                     type="number"
                     id="rentPerDay"
                     name="rentPerDay"
@@ -95,7 +99,29 @@ export const RoomUpdate = ({ roomId, onClose }) => {
                     onChange={handleChange}
                 />
             </div>
-            <button className="PopUp-btn" type="submit">Update</button>
+            <div className="Modal-div">
+                <label className="Modal-label" htmlFor="maxCount">Capacidad máxima:</label>
+                <input
+                    className="Modal-input"
+                    type="number"
+                    id="maxCount"
+                    name="maxCount"
+                    value={roomForm.maxCount}
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="Modal-div">
+                <label className="Modal-label" htmlFor="type">Tipo:</label>
+                <input
+                    className="Modal-input"
+                    type="text"
+                    id="type"
+                    name="type"
+                    value={roomForm.type}
+                    onChange={handleChange}
+                />
+            </div>
+            <button className="Login-btn" type="submit">Update</button>
         </form>
     );
 };

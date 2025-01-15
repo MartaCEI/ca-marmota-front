@@ -10,7 +10,7 @@ const Admin = () => {
     const [rooms, setRooms] = useState([]);
     const [activeRoomId, setActiveRoomId] = useState(null);
 
-    
+
 
     useEffect(() => {
         getBookings();
@@ -83,178 +83,180 @@ const Admin = () => {
         } catch (error) {
             setError('Error al cancelar la reserva');
             console.error('Error:', error);
-        } 
+        }
     };
 
-        // Eliminar usuario
-        const handleDelete = async (userId) => {
-            const token = localStorage.getItem('token');
-            const response = await fetch(`${URL}/users/${userId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            if (response.ok) {
-                alert('Usuario eliminado correctamente');
-                getUsers(); 
-            } else {
-                alert('Error al eliminar el usuario');
+    // Eliminar usuario
+    const handleDelete = async (userId) => {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${URL}/users/${userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
             }
-        };
+        });
+        if (response.ok) {
+            alert('Usuario eliminado correctamente');
+            getUsers();
+        } else {
+            alert('Error al eliminar el usuario');
+        }
+    };
 
-        const handlePopUp = (id) => {
-            setActiveRoomId(id);
-        };
-    
-        const handleClose = () => {
-            setActiveRoomId(null);
-            getRooms();
-        };
+    // Modal para actualizar habitaciones
+    const handlePopUp = (id) => {
+        setActiveRoomId(id); // Abre el modal para la habitación seleccionada.
+    };
 
-        return (
-            <>  
-                <h1 className="text-2xl font-bold mb-4 text-center">Admin</h1>
-                
-                {/* Tabla para los bookings confirmados */}
-                <p className="mb-4"><strong>Lista de Bookings Confirmados</strong></p>
-                {bookings.filter(b => b.status === "booked").length > 0 ? (
-                    <div className="overflow-x-auto">
-                        <table className="min-w-full bg-white border border-gray-200 table">
-                            <thead>
-                                <tr className="bg-gray-100 border-b">
-                                    <th className="py-2 px-4 border-r">Habitación</th>
-                                    <th className="py-2 px-4 border-r">Checkin</th>
-                                    <th className="py-2 px-4">Checkout</th>
-                                    <th className="py-2 px-4">Nombre</th>
-                                    <th className="py-2 px-4">Email</th>
-                                    <th className="py-2 px-4">Total</th>
-                                    <th className="py-2 px-4">Noches</th>
-                                    <th className="py-2 px-4">Transacción</th>
-                                    <th className="py-2 px-4">Estado</th>
-                                    <th className="py-2 px-4">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {bookings.filter(b => b.status === "booked").map(({ _id, roomId, userId, checkIn, checkOut, totalAmount, totalNights, transactionId, status }) => (
-                                    <tr key={transactionId} className="border-b hover:bg-gray-50">
-                                        <td className="py-2 px-4 border-r">{roomId.roomName}</td>
-                                        <td className="py-2 px-4 border-r">{formatDate(checkIn)}</td>
-                                        <td className="py-2 px-4">{formatDate(checkOut)}</td>
-                                        <td className="py-2 px-4">{userId ? userId.name : "Usuario eliminado"}</td>
-                                        <td className="py-2 px-4">{userId ? userId.username : "Usuario eliminado"}</td>
-                                        <td className="py-2 px-4">{totalAmount}</td>
-                                        <td className="py-2 px-4">{totalNights}</td>
-                                        <td className="py-2 px-4">{transactionId}</td>
-                                        <td className="py-2 px-4">{status}</td>
-                                        <td className="py-2 px-4">
-                                            <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => cancelBooking(_id)}>Cancelar</button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                ) : (
-                    <p className="text-gray-500">No hay bookings confirmados.</p>
-                )}
+    const handleClose = () => {
+        setActiveRoomId(null);  // Cierra el modal.
+    };
 
-                {/* Tabla para los bookings cancelados */}
-                <p className="mb-4"><strong>Lista de Bookings Cancelados</strong></p>
-                {bookings.filter(b => b.status === "cancelled").length > 0 ? (
-                    <div className="overflow-x-auto">
-                        <table className="min-w-full bg-white border border-gray-200">
-                            <thead>
-                                <tr className="bg-gray-100 border-b">
-                                    <th className="py-2 px-4 border-r">Habitación</th>
-                                    <th className="py-2 px-4 border-r">Checkin</th>
-                                    <th className="py-2 px-4">Checkout</th>
-                                    <th className="py-2 px-4">Nombre</th>
-                                    <th className="py-2 px-4">Email</th>
-                                    <th className="py-2 px-4">Total</th>
-                                    <th className="py-2 px-4">Noches</th>
-                                    <th className="py-2 px-4">Transacción</th>
-                                    <th className="py-2 px-4">Estado</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {bookings.filter(b => b.status === "cancelled").map(({ roomId, userId, checkIn, checkOut, totalAmount, totalNights, transactionId, status }) => (
-                                    <tr key={transactionId} className="border-b hover:bg-gray-50">
-                                        <td className="py-2 px-4 border-r">{roomId.roomName}</td>
-                                        <td className="py-2 px-4 border-r">{formatDate(checkIn)}</td>
-                                        <td className="py-2 px-4">{formatDate(checkOut)}</td>
-                                        <td className="py-2 px-4">{userId ? userId.name : "Usuario eliminado"}</td>
-                                        <td className="py-2 px-4">{userId ? userId.username : "Usuario eliminado"}</td>
-                                        <td className="py-2 px-4">{totalAmount}</td>
-                                        <td className="py-2 px-4">{totalNights}</td>
-                                        <td className="py-2 px-4">{transactionId}</td>
-                                        <td className="py-2 px-4">{status}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                ) : (
-                    <p className="text-gray-500">No hay bookings cancelados.</p>
-                )}
-        
-            {/* Tabla para los usuarios */}
-            <p className="mb-4"><strong>La lista de usuarios</strong></p>
-            <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-200">
+    return (
+        <div className="Table-container">
+            <h1 className="Table-h1">Admin</h1>
+
+            {/* Tabla para los bookings confirmados */}
+            <p className="Table-title"><strong>Lista de Bookings Confirmados</strong></p>
+            {bookings.filter(b => b.status === "booked").length > 0 ? (
+                <table className="Table">
                     <thead>
-                        <tr className="bg-gray-100 border-b">
-                            <th className="py-2 px-4 border-r">Nombre</th>
-                            <th className="py-2 px-4">Usuario/Email</th>
-                            {/* phoneNumber */}
-                            <th className="py-2 px-4">Acciones</th>
+                        <tr className="Table-thead">
+                            <th className="Table-th">Habitación</th>
+                            <th className="Table-th">Checkin</th>
+                            <th className="Table-th">Checkout</th>
+                            <th className="Table-th">Nombre</th>
+                            <th className="Table-th">Email</th>
+                            <th className="Table-th">Total</th>
+                            <th className="Table-th">Noches</th>
+                            <th className="Table-th">Transacción</th>
+                            <th className="Table-th">Estado</th>
+                            <th className="Table-th">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {bookings.filter(b => b.status === "booked").map(({ _id, roomId, userId, checkIn, checkOut, totalAmount, totalNights, transactionId, status }) => (
+                            <tr key={transactionId} className="border-b hover:bg-gray-50">
+                                <td className="Table-td">{roomId.roomName}</td>
+                                <td className="Table-td">{formatDate(checkIn)}</td>
+                                <td className="Table-td">{formatDate(checkOut)}</td>
+                                <td className="Table-td">{userId ? userId.name : "Usuario eliminado"}</td>
+                                <td className="Table-td">{userId ? userId.username : "Usuario eliminado"}</td>
+                                <td className="Table-td">{totalAmount}</td>
+                                <td className="Table-td">{totalNights}</td>
+                                <td className="Table-td">{transactionId}</td>
+                                <td className="Table-td">{status}</td>
+                                <td className="Table-td">
+                                    <button className="Table-btn" onClick={() => cancelBooking(_id)}>Cancelar</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            ) : (
+                <p className="Table-error">No hay bookings confirmados.</p>
+            )}
+
+            {/* Tabla para los bookings cancelados */}
+            <p className="Table-title"><strong>Lista de Bookings Cancelados</strong></p>
+            {bookings.filter(b => b.status === "cancelled").length > 0 ? (
+                <table className="Table">
+                    <thead>
+                        <tr className="Table-thead">
+                            <th className="Table-th">Habitación</th>
+                            <th className="Table-th">Checkin</th>
+                            <th className="Table-th">Checkout</th>
+                            <th className="Table-th">Nombre</th>
+                            <th className="Table-th">Email</th>
+                            <th className="Table-th">Total</th>
+                            <th className="Table-th">Noches</th>
+                            <th className="Table-th">Transacción</th>
+                            <th className="Table-th">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {bookings.filter(b => b.status === "cancelled").map(({ roomId, userId, checkIn, checkOut, totalAmount, totalNights, transactionId, status }) => (
+                            <tr key={transactionId} className="border-b hover:bg-gray-50">
+                                <td className="Table-td">{roomId.roomName}</td>
+                                <td className="Table-td">{formatDate(checkIn)}</td>
+                                <td className="Table-td">{formatDate(checkOut)}</td>
+                                <td className="Table-td">{userId ? userId.name : "Usuario eliminado"}</td>
+                                <td className="Table-td">{userId ? userId.username : "Usuario eliminado"}</td>
+                                <td className="Table-td">{totalAmount}</td>
+                                <td className="Table-td">{totalNights}</td>
+                                <td className="Table-td">{transactionId}</td>
+                                <td className="Table-td">{status}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            ) : (
+                <p className="Table-error">No hay bookings cancelados.</p>
+            )}
+
+            {/* Tabla para los usuarios */}
+            <p className="Table-title"><strong>La lista de usuarios</strong></p>
+                <table className="Table">
+                    <thead>
+                        <tr className="Table-thead">
+                            <th className="Table-th">Nombre</th>
+                            <th className="Table-th">Usuario/Email</th>
+                            <th className="Table-th">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {users.map(({ _id, name, username }) => (
                             <tr key={_id} className="border-b hover:bg-gray-50">
-                                <td className="py-2 px-4 border-r">{name}</td>
-                                <td className="py-2 px-4">{username}</td>
-                                <td className="py-2 px-4">
-                                    <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => handleDelete(_id)}>Eliminar</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            {/* Tabla para lo cuartos donde se hace un fetch a los cusrtos y hay un boton de update.*/}
-            <p className="mb-4"><strong>Rooms list</strong></p>
-            <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-200">
-                    <thead>
-                        <tr className="bg-gray-100 border-b">
-                            <th className="py-2 px-4 border-r">Room Name</th>
-                            <th className="py-2 px-4">Description</th>
-                            <th className="py-2 px-4">Rent Per Day</th>
-                            <th className="py-2 px-4">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {rooms.map(({ _id, roomName, description, rentPerDay }) => (
-                            <tr key={_id} className="border-b hover:bg-gray-50">
-                                <td className="py-2 px-4 border-r">{roomName}</td>
-                                <td className="py-2 px-4">{description}</td>
-                                <td className="py-2 px-4">{rentPerDay}</td>
-                                <td className="py-2 px-4">
-                                    <button className="PopUp-btn" onClick={() => handlePopUp(_id)}>Update</button>
+                                <td className="Table-td">{name}</td>
+                                <td className="Table-td">{username}</td>
+                                <td className="Table-td">
+                                    <button className="Table-btn" onClick={() => handleDelete(_id)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
 
-                <div className={`PopUp ${activeRoomId ? 'active' : ''}`}>
-                    <button className="cerrar" onClick={handleClose}>Cerrar</button>
-                    <RoomUpdate roomId={activeRoomId} onClose={handleClose} />
-                </div>
-            </div>
-        </>
+            {/* Renderizar lista de habitaciones */}
+            <p className="Table-title"><strong>Rooms list</strong></p>
+                <table className="Table">
+                    <thead>
+                        <tr className="Table-thead">
+                            <th className="Table-th">Room Name</th>
+                            <th className="Table-th">Description</th>
+                            <th className="Table-th">Rent Per Day</th>
+                            <th className="Table-th">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rooms.map(({ _id, roomName, description, rentPerDay }) => (
+                            <tr key={_id} className="border-b hover:bg-gray-50">
+                                <td className="Table-td">{roomName}</td>
+                                <td className="Table-td">{description}</td>
+                                <td className="Table-td">{rentPerDay}</td>
+                                <td className="Table-td">
+                                    <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => handlePopUp(_id)}>Editar</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
+                {/* Modal para RoomUpdate */}
+                {activeRoomId && (
+                    <div className="Modal-background">
+                        <div className="Modal-container">
+                            <button
+                                className="Popup-Galeria-CloseBtn"
+                                onClick={handleClose}
+                            >
+                                X
+                            </button>
+                            <RoomUpdate roomId={activeRoomId} onClose={handleClose} />
+                        </div>
+                    </div>
+                )}
+        </div>
     );
 }
 

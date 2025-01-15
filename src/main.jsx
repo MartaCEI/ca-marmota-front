@@ -5,6 +5,7 @@ import { router } from '@/lib/routes/routes'
 import { UserProvider } from '@/hooks/useUser.jsx'
 import '@/css/index.css'
 import '@/css/register.css'
+import '@/css/tablas.css'
 import { PageInfoProvider } from './hooks/usePageInfo'
 
 createRoot(document.getElementById('root')).render(

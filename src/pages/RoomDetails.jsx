@@ -20,7 +20,6 @@ const RoomDetails = () => {
             const response = await fetch(`${VITE_API_URL}/rooms/${id}`);
             const data = await response.json();
             setRoom(data);
-            setLoading(false);
         } catch (error) {
             console.error('Error al obtener la habitación:', error);
         }
@@ -46,7 +45,6 @@ const RoomDetails = () => {
                     </div>
                 </div>
             </div>
-
             <div className='Amenity-div'>
                 <div className="Amenity-div-inner">
                     <div className="Amenity-div-left">
@@ -61,7 +59,7 @@ const RoomDetails = () => {
                     <div className="Amenity-div-right">
                         <p>Habitación individual</p>
                         <p>Baño {bathRoom}</p>
-                        <p>Nº de personas: {maxCount}</p>
+                        <p>Capacidad máxima: {maxCount}</p>
                         <p>{type}</p>
                         <p>{rentPerDay}€ por noche</p>
                     </div>
