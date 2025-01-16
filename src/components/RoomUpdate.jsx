@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export const RoomUpdate = ({ roomId, onClose }) => {
+export const RoomUpdate = ({ roomId, onClose, getRooms }) => {
     const [roomForm, setRoomForm] = useState({
         roomName: '',
         description: '',
@@ -10,6 +10,8 @@ export const RoomUpdate = ({ roomId, onClose }) => {
     });
 
     const { VITE_API_URL } = import.meta.env;
+
+    const [image, setImage] = useState(null);
 
     // Cargar datos de la habitación cuando se abra el popup
     useEffect(() => {
@@ -37,6 +39,8 @@ export const RoomUpdate = ({ roomId, onClose }) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setRoomForm({ ...roomForm, [name]: value });
+        const file = e.target.files[0];
+        setImage(file);  // Almacenar el archivo seleccionado
     };
 
     // Manejo de actualización de la habitación
@@ -58,6 +62,27 @@ export const RoomUpdate = ({ roomId, onClose }) => {
                 alert('La habitación se ha actualizado correctamente');
                 onClose();  // Cerrar el modal
                 getRooms();  // Actualizar la lista de habitaciones
+
+                // Fetch de la subida de la imagen al backend public/uploads
+            if (image) {
+                const formData = new FormData();
+                formData.append('image', image);
+
+                const imageResponse = await fetch(`${VITE_API_URL}/upload`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formData
+                });
+
+                if (imageResponse.ok) {
+                    alert('Imagen subida correctamente');
+                } else {
+                    alert('Error al subir la imagen');
+                }
+            }
+
             } else {
                 alert('Error en la actualización de la habitación');
             }
@@ -121,6 +146,17 @@ export const RoomUpdate = ({ roomId, onClose }) => {
                     id="type"
                     name="type"
                     value={roomForm.type}
+                    onChange={handleChange}
+                />
+            </div>
+            {/* Campo para subir imagen */}
+            <div className="Modal-div">
+                <label className="Modal-label" htmlFor="image">Imagen:</label>
+                <input
+                    className="Modal-input"
+                    type="file"
+                    id="image"
+                    name="image"
                     onChange={handleChange}
                 />
             </div>
