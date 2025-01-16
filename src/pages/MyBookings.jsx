@@ -23,16 +23,13 @@ const MyBookings = () => {
                     'Authorization': `Bearer ${token}`
                 }
             });
-
             if (!response.ok) throw new Error('Error al obtener reservas');
-
             const responseData = await response.json();
             setBookings(responseData.data);
         } catch (error) {
             setError('Error al cargar las reservas');
             console.error('Error:', error);
         }
-
     };
 
     const cancelBooking = async (bookingId) => {
