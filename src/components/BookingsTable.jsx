@@ -1,42 +1,39 @@
-import { formatDate } from "@/utils/date";
+import React from "react";
+import { BookingsTableHeader } from "@/components/BookingsTableHeader";
+import { BookingsTableBody } from "@/components/BookingsTableBody";
 
-export const BookingsTable = (bookings) => (
-    <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200">
-            <thead>
-                <tr className="bg-gray-100 border-b">
-                    <th className="py-2 px-4 border-r">Habitación</th>
-                    <th className="py-2 px-4 border-r">Checkin</th>
-                    <th className="py-2 px-4">Checkout</th>
-                    <th className="py-2 px-4">Nombre</th>
-                    <th className="py-2 px-4">Email</th>
-                    <th className="py-2 px-4">Precio/día</th>
-                    <th className="py-2 px-4">Total</th>
-                    <th className="py-2 px-4">Noches</th>
-                    <th className="py-2 px-4">Transacción</th>
-                    <th className="py-2 px-4">Estado</th>
-                    <th className="py-2 px-4">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {bookings.map(({ roomId, userId, checkIn, checkOut, totalAmount, totalNights, transactionId, status }) => (
-                    <tr key={transactionId} className="border-b hover:bg-gray-50">
-                        <td className="py-2 px-4 border-r">{roomId.roomName}</td>
-                        <td className="py-2 px-4 border-r">{formatDate(checkIn)}</td>
-                        <td className="py-2 px-4">{formatDate(checkOut)}</td>
-                        <td className="py-2 px-4">{userId ? userId.name : "Usuario eliminado"}</td>
-                        <td className="py-2 px-4">{userId ? userId.username : "Usuario eliminado"}</td>
-                        <td className="py-2 px-4">{roomId.rentPerDay}</td>
-                        <td className="py-2 px-4">{totalAmount}</td>
-                        <td className="py-2 px-4">{totalNights}</td>
-                        <td className="py-2 px-4">{transactionId}</td>
-                        <td className="py-2 px-4">{status}</td>
-                        <td className="py-2 px-4">
-                            <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => cancelBooking(transactionId)}>Cancelar</button>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    </div>
-);
+export const BookingsTable = ({ bookings, cancelBooking }) => {
+    // Filtrar las reservas por estado
+    const bookedBookings = bookings.filter(b => b.status === "booked");
+    const cancelledBookings = bookings.filter(b => b.status === "cancelled");
+
+    return (
+        <>
+            {/* Tabla para los bookings confirmados */}
+            <p className="Table-title"><strong>Lista de Bookings Confirmados</strong></p>
+            {bookedBookings.length > 0 ? (
+                <div className="Table-wrapper">
+                    <table className="Table">
+                        <BookingsTableHeader />
+                        <BookingsTableBody bookings={bookedBookings} cancelBooking={cancelBooking} />
+                    </table>
+                </div>
+            ) : (
+                <p className="Table-error">No hay bookings confirmados.</p>
+            )}
+
+            {/* Tabla para los bookings cancelados */}
+            <p className="Table-title"><strong>Lista de Bookings Cancelados</strong></p>
+            {cancelledBookings.length > 0 ? (
+                <div className="Table-wrapper">
+                    <table className="Table">
+                        <BookingsTableHeader />
+                        <BookingsTableBody bookings={cancelledBookings} cancelBooking={cancelBooking} />
+                    </table>
+                </div>
+            ) : (
+                <p className="Table-error">No hay bookings cancelados.</p>
+            )}
+        </>
+    );
+};

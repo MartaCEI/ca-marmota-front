@@ -1,11 +1,11 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useUser } from '@/hooks/useUser';
 import { Link, NavLink } from 'react-router-dom';
 
 export const Header = () => {
     const { user, logout } = useUser();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef(null); // Referencia para el menú
 
     useEffect(() => {
         if (user) {
@@ -13,22 +13,58 @@ export const Header = () => {
         } else {
             console.log("No hay usuario logueado");
         }
-    }, [user]); // Se ejecuta cada vez que cambia el usuario
-    
+    }, [user]);
+
     const userId = user ? user._id : null;
 
+    // Cerrar el menú al hacer scroll
+    useEffect(() => {
+        const handleScroll = () => {
+            if (isMenuOpen) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [isMenuOpen]);
+
+    // Cerrar el menú al hacer clic fuera de él
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    // Función para manejar el botón de cerrar
+    const handleCloseMenu = () => {
+        setIsMenuOpen(false);
+    };
+
+    // Función para alternar el menú
     const handleOnClick = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     return (
         <header className="Header">
-            <nav className={`Nav ${isMenuOpen ? 'isActive' : ''}`}>
+            <nav 
+                className={`Nav ${isMenuOpen ? 'isActive' : ''}`} 
+                ref={menuRef} // Asignamos la referencia al menú
+            >
                 <div className='Nav-div'>
                     <div className='Nav-div-upper'>
-                    {
-                    user ? ( // Si hay un usuario
-                            user.isAdmin ? ( // Si es admin
+                        {user ? (
+                            user.isAdmin ? (
                                 <ul className="Nav-ul-user">
                                     <li>
                                         <p className="Nav-p-user">Bienvenid@</p>
@@ -37,10 +73,10 @@ export const Header = () => {
                                         <p className="Nav-p-user">{user.name}</p>
                                     </li>
                                     <li>
-                                        <NavLink className="Nav-a-user" to="/admin">Area admin</NavLink>
+                                        <NavLink className="Nav-a-user" to="/admin">Área admin</NavLink>
                                     </li>
                                 </ul>
-                            ) : ( // Si no es admin
+                            ) : (
                                 <ul className="Nav-ul-user">
                                     <li>
                                         <p className="Nav-p-user">Bienvenid@</p>
@@ -53,15 +89,14 @@ export const Header = () => {
                                     </li>
                                 </ul>
                             )
-                        ) : null
-                    }
+                        ) : null}
                     </div>
                     <ul className="Nav-ul">
                         <li className="Nav-li">
                             <NavLink className="Header-a" to={"/"}>Home</NavLink>
                         </li>
                         <li className="Nav-li">
-                            <NavLink className="Header-a" to={"/restaurante"}>Restuarante</NavLink>
+                            <NavLink className="Header-a" to={"/restaurante"}>Restaurante</NavLink>
                         </li>
                         <li>
                             <NavLink className="Header-a" to={"/servicios"}>Servicios</NavLink>
@@ -71,17 +106,15 @@ export const Header = () => {
                         </li>
                     </ul>
                     <ul className="Nav-ul-user">
-                        {
-                            !user ? (  // Si no hay usuario logueado
-                                <li>
-                                    <NavLink className="Nav-a-user" to="/login">Login</NavLink>
-                                </li>
-                            ) : (  // Si hay usuario logueado
-                                <li>
-                                    <button className="Nav-a-user" onClick={logout} type="button">Logout</button>
-                                </li>
-                            )
-                        }
+                        {!user ? (
+                            <li>
+                                <NavLink className="Nav-a-user" to="/login">Login</NavLink>
+                            </li>
+                        ) : (
+                            <li>
+                                <button className="Nav-a-user" onClick={logout} type="button">Logout</button>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </nav>
@@ -89,9 +122,21 @@ export const Header = () => {
                 <div className="Header-btn">
                     <Link to="/rooms" className='Header-btn-Habitaciones'>Habitaciones &#8811;</Link>
                 </div>
-                <div className="Header-btn" onClick={handleOnClick}>
-                    <button className={`Header-btn-menu ${isMenuOpen ? 'isHidden' : ''}`}>Menu &#8811;</button>
-                    <button className={`Header-btn-cerrar ${isMenuOpen ? '' : 'isHidden'}`}>Cerrar &#8810;</button>
+                <div className="Header-btn">
+                    {/* Botón de menú para abrir */}
+                    <button 
+                        className={`Header-btn-menu ${isMenuOpen ? 'isHidden' : ''}`} 
+                        onClick={handleOnClick}
+                    >
+                        Menu &#8811;
+                    </button>
+                    {/* Botón de cerrar para cerrar */}
+                    <button 
+                        className={`Header-btn-cerrar ${isMenuOpen ? '' : 'isHidden'}`} 
+                        onClick={handleCloseMenu}
+                    >
+                        Cerrar &#8810;
+                    </button>
                 </div>
             </div>
         </header>

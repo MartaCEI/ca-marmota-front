@@ -53,9 +53,11 @@ export const RoomUpdate = ({ roomId, onClose }) => {
                 },
                 body: JSON.stringify(roomForm)
             });
+    
             if (response.ok) {
                 alert('La habitación se ha actualizado correctamente');
-                onClose();
+                onClose();  // Cerrar el modal
+                getRooms();  // Actualizar la lista de habitaciones
             } else {
                 alert('Error en la actualización de la habitación');
             }
@@ -63,6 +65,7 @@ export const RoomUpdate = ({ roomId, onClose }) => {
             console.error('Error en la actualización de la habitación:', error);
         }
     };
+    
 
     return (
         <form className="Modal-form" onSubmit={handleUpdate}>

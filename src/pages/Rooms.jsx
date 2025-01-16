@@ -72,7 +72,7 @@ function Rooms() {
                     }}
                 />
                 
-                <button className='Nav-a-user' onClick={filterRooms} disabled={!dates.checkIn || !dates.checkOut}>
+                <button className='Marmota-btn' onClick={filterRooms} disabled={!dates.checkIn || !dates.checkOut}>
                     Disponibilidad
                 </button>
             </div>

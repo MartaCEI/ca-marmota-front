@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { formatDate } from "../utils/date";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const MyBookings = () => {
     const { id } = useParams();
@@ -62,50 +62,49 @@ const MyBookings = () => {
     };
 
     return (
-        <>
-            <h1>Mis Reservas</h1>
-            {/* {error && <p className="text-red-500">{error}</p>} Mensaje de error */}
+        <div className="Table-container">
+            <h1 className="Table-h1">Mis Reservas</h1>
             {bookings.length > 0 ? (
-                <div className="overflow-x-auto">
-                    <table className="min-w-full bg-white border border-gray-500">
+                <div className="Table-wrapper">
+                    <table className="Table">
                         <thead>
-                            <tr className="bg-gray-100 border-b">
-                                <th className="py-2 px-4 border-r">Habitación</th>
-                                <th className="py-2 px-4 border-r">Checkin</th>
-                                <th className="py-2 px-4">Checkout</th>
-                                <th className="py-2 px-4">Precio/día</th>
-                                <th className="py-2 px-4">Total</th>
-                                <th className="py-2 px-4">Noches</th>
-                                <th className="py-2 px-4">Transacción</th>
-                                <th className="py-2 px-4">Acciones</th>
+                            <tr className="Table-thead">
+                                <th className="Table-th">Habitación</th>
+                                <th className="Table-th">Checkin</th>
+                                <th className="Table-th">Checkout</th>
+                                <th className="Table-th">Precio/día</th>
+                                <th className="Table-th">Total</th>
+                                <th className="Table-th">Noches</th>
+                                <th className="Table-th">Transacción</th>
+                                <th className="Table-th">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             {bookings.map(({ _id, roomId, checkIn, checkOut, totalAmount, totalNights, transactionId, status }) => (
                                 status === 'cancelled' ? (
-                                    <tr key={transactionId} className="border-b hover:bg-gray-50">
-                                        <td className="py-2 px-4 border-r">{roomId.roomName}</td>
-                                        <td className="py-2 px-4 border-r">{formatDate(checkIn)}</td>
-                                        <td className="py-2 px-4">{formatDate(checkOut)}</td>
-                                        <td className="py-2 px-4">{roomId.rentPerDay}</td>
-                                        <td className="py-2 px-4">{totalAmount}</td>
-                                        <td className="py-2 px-4">{totalNights}</td>
-                                        <td className="py-2 px-4">{transactionId}</td>
-                                        <td className="py-2 px-4">
-                                        <p className="py-2 px-4">Reserva cancelada</p>
+                                    <tr>
+                                        <td className="Table-td">{roomId.roomName}</td>
+                                        <td className="Table-td">{formatDate(checkIn)}</td>
+                                        <td className="Table-td">{formatDate(checkOut)}</td>
+                                        <td className="Table-td">{roomId.rentPerDay} €</td>
+                                        <td className="Table-td">{totalAmount} €</td>
+                                        <td className="Table-td">{totalNights}</td>
+                                        <td className="Table-td">{transactionId}</td>
+                                        <td className="Table-td">
+                                        <p className="Table-td">Reserva cancelada</p>
                                         </td>
                                     </tr>
                                 ) : (
-                                    <tr key={transactionId} className="border-b hover:bg-gray-50">
-                                        <td className="py-2 px-4 border-r">{roomId.roomName}</td>
-                                        <td className="py-2 px-4 border-r">{formatDate(checkIn)}</td>
-                                        <td className="py-2 px-4">{formatDate(checkOut)}</td>
-                                        <td className="py-2 px-4">{roomId.rentPerDay}</td>
-                                        <td className="py-2 px-4">{totalAmount}</td>
-                                        <td className="py-2 px-4">{totalNights}</td>
-                                        <td className="py-2 px-4">{transactionId}</td>
-                                        <td className="py-2 px-4">
-                                            <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => cancelBooking(_id)}>Cancelar</button>
+                                    <tr>
+                                        <td className="Table-td">{roomId.roomName}</td>
+                                        <td className="Table-td">{formatDate(checkIn)}</td>
+                                        <td className="Table-td">{formatDate(checkOut)}</td>
+                                        <td className="Table-td">{roomId.rentPerDay} €</td>
+                                        <td className="Table-td">{totalAmount} €</td>
+                                        <td className="Table-td">{totalNights}</td>
+                                        <td className="Table-td">{transactionId}</td>
+                                        <td className="Table-td">
+                                            <button className="Table-btn" onClick={() => cancelBooking(_id)}>Cancelar</button>
                                         </td>
                                     </tr>
                                 )
@@ -114,9 +113,12 @@ const MyBookings = () => {
                     </table>
                 </div>
             ) : (
-                <p>Todavía no hay reservas. ¡Explora nuestras opciones de reserva!</p>
+                <div className="Table-wrapper">
+                    <p className="Table-title">Todavía no hay reservas. ¡Explora nuestras opciones de reserva!</p>
+                    <Link className="Marmota-btn" to={"/rooms"}>Habitaciones</Link>
+                </div>
             )}
-        </>
+        </div>
     );
 };
 
