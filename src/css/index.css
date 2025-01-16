@@ -88,15 +88,21 @@ body {
 /* Fin reset */
 
 @font-face {
-  font-family: 'george';
+  font-family: 'mirage';
+  src: url('../assets/fonts/mirage/MADEMirage.woff2') format('woff2'),
+      url('../assets/fonts/mirage/MADEMirage.woff') format('woff');
+  font-weight: normal;
   font-style: normal;
-  src: url('../assets/fonts/louis_george_cafe/Louis\ George\ Cafe.ttf') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'mirage';
+  font-family: 'george';
+  src: url('../assets/fonts/george/LouisGeorgeCafe.woff2') format('woff2'),
+      url('../assets/fonts/george/LouisGeorgeCafe.woff') format('woff');
+  font-weight: normal;
   font-style: normal;
-  src: url('../assets/fonts/made_mirage/MADE\ Mirage\ Regular\ PERSONAL\ USE.otf') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  font-display: swap;
 }
 
 button,
@@ -249,11 +255,12 @@ a {
 
 .Home-header-logo {
   position: absolute;
+  height: 10rem;
   top: 30%;
   left: 50%;
   transform: translateX(-50%);
-  width: 15%;
   cursor: pointer;
+  filter: drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.6));
 }
 
 .Section-home {
@@ -588,6 +595,7 @@ a {
 
 .Footer-logo {
   width: 100%;
+  max-height: 8rem;
   display: flex;
   justify-content: center;
   align-items: center;

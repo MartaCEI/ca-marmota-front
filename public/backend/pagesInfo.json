@@ -3,7 +3,7 @@
         {
             "page": "home",
             "image": "cabana.jpg",
-            "logo": "logo.png",
+            "logo": "logo.svg",
             "title": "Bienvenidos a Ca Marmota",
             "subtitle": "Descubre el encanto de la naturaleza y la tranquilidad en Ca Marmota, un acogedor hotel rural enclavado en un entorno pintoresco que te invita a desconectar y reconectar con lo esencial. Rodeado de paisajes serenos, Ca Marmota ofrece el refugio ideal para quienes buscan una escapada relajante en contacto con la naturaleza, sin renunciar a las comodidades modernas. Disfruta de nuestras cómodas habitaciones, vistas inigualables y una cálida hospitalidad que hará de tu estancia una experiencia inolvidable. ¡Ven a vivir momentos únicos y a recargar energías en este paraíso rural!",
             "articles": [
@@ -32,7 +32,7 @@
         {
             "page": "habitaciones",
             "image": "habitacion.jpg",
-            "logo": "logo.png",
+            "logo": "logo.svg",
             "title": "Habitaciones",
             "subtitle": "Descansa en el confort de nuestras habitaciones, rodeadas de naturaleza y equipadas para ofrecerte la tranquilidad que buscas. Cada habitación en Ca Marmota está decorada con un estilo rústico y acogedor, con muebles de madera y detalles que reflejan la esencia del entorno natural. Aquí encontrarás el espacio perfecto para relajarte y disfrutar de momentos de paz y serenidad, lejos del bullicio de la vida diaria.",
             "articles": []
@@ -40,7 +40,7 @@
         {
             "page": "restaurante",
             "image": "desayuno.jpg",
-            "logo": "logo.png",
+            "logo": "logo.svg",
             "title": "Restaurante",
             "subtitle": "Descubre la riqueza culinaria valenciana en nuestro restaurante, que ofrece desayunos, almuerzos y cenas en un entorno natural y acogedor. Nuestros chefs se inspiran en los sabores locales para crear platos auténticos que reflejan la tradición y cultura de la región. Desde la emblemática paella hasta platos de temporada, cada bocado te conecta con el auténtico sabor valenciano en un ambiente relajado y cálido.",
             "articles": [
@@ -64,7 +64,7 @@
         {
             "page": "servicios",
             "image": "piscina.jpg",
-            "logo": "logo.png",
+            "logo": "logo.svg",
             "title": "Servicios",
             "subtitle": "Explora una variedad de servicios pensados para que tu estancia en Ca Marmota sea memorable, desde actividades al aire libre hasta relajación en nuestro spa. Nuestra oferta de servicios incluye todo lo necesario para que disfrutes al máximo de tu tiempo en el hotel, desde excursiones guiadas y paseos a caballo hasta tratamientos de bienestar. Cada detalle está diseñado para ofrecerte una experiencia completa de relajación y conexión con la naturaleza.",
             "articles": [
