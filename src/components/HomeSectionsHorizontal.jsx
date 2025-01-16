@@ -17,11 +17,11 @@ export const HomeSectionsHorizontal = ({article}) => {
                             <p className="Horizontal-p">{articleSubtitle}</p>
                             {/* Muestra el link a las habitaciones solo caundo el titulo del article es habiatines */}
                             {articleTitle === "Habitaciones" && (
-                                <Link to="/rooms" className="Horizontal-btn">Ver mas</Link>
+                                <Link to="/rooms" className="Horizontal-btn">Ver más</Link>
                             )}
                             {/* Muestra el link a los servicios solo caundo el titulo del article es Piscina y Spa */}
                             {articleTitle === "Piscina y Spa" && (
-                                <Link to="/servicios" className="Horizontal-btn">Ver mas</Link>
+                                <Link to="/servicios" className="Horizontal-btn">Ver más</Link>
                             )}
                         </div>
                     </div>

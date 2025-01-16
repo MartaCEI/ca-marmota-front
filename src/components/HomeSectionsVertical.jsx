@@ -19,11 +19,11 @@ export const HomeSectionsVertical = ({article}) => {
                             <p className="Vertical-p">{articleSubtitle}</p>
                             {/* Muestra el link a las habitaciones solo caundo el titulo del article es Restaurante*/}
                         {articleTitle === "Restaurante" && (
-                            <Link to="/restaurante" className="Vertical-btn">Ver mas</Link>
+                            <Link to="/restaurante" className="Vertical-btn">Ver más</Link>
                         )}
                         {/* Muestra el link a los servicios solo caundo el titulo del article es Naturaleza y Aventura */}
                         {articleTitle === "Naturaleza y Aventura" && (
-                            <Link to="/servicios" className="Vertical-btn">Ver mas</Link>
+                            <Link to="/servicios" className="Vertical-btn">Ver más</Link>
                         )}
                         </div>
                     </div>
