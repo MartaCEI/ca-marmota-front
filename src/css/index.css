@@ -608,6 +608,123 @@ a {
   resize: vertical; /* Permite ajustar el tamaño vertical del textarea */
 }
 
+/* Css Popup */
+.PopUp {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  backdrop-filter: blur(20px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 5rem;
+}
+
+.PopUp.active {
+  display: flex;
+}
+
+.PopUp-form {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0,0,0,.5);
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+}
+
+.cerrar {
+  background-color: white;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+}
+
+.PopUp-div {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: .5rem;
+}
+
+.PopUp-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.PopUp-input {
+  padding: .5rem;
+  border: 1px solid #000;
+  border-radius: .5rem;
+  font-size: 1rem;
+}
+
+.Lightbox-img {
+  width: 90%;
+  max-height: 80vh;
+  /* background-color: orange; */
+  object-fit: contain;
+}
+
+
+/* CSS del componente Rooms y DatePicker.jsx */
+.Habitaciones-div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.Habitaciones-range-picker .ant-picker {
+border: 2px solid var(--text-primary) !important;
+color: var(--text-primary);
+}
+
+.Habitaciones-range-picker .ant-picker:hover,
+.Habitaciones-range-picker .ant-picker-focused,
+.Habitaciones-range-picker .ant-picker:focus-within {
+border-color: var(--text-primary) !important;
+}
+
+/* Forzar color verde en el borde al hacer hover, focus, y active */
+.Habitaciones-range-picker .ant-picker:hover,
+.Habitaciones-range-picker .ant-picker-focused {
+border: 2px solid var(--text-primary) !important;
+}
+
+/* Cambiar el color del texto, placeholder e ícono */
+.Habitaciones-range-picker .ant-picker-input input {
+color: var(--text-primary) !important;
+}
+
+.Habitaciones-range-picker .ant-picker-input input::placeholder {
+color: var(--text-primary) !important;
+}
+
+.Habitaciones-range-picker .ant-picker-suffix svg {
+fill: var(--text-primary) !important;
+}
+
+/* Remover la barra azul en la selección */
+.Habitaciones-range-picker .ant-picker-active-bar {
+background: none !important;
+}
+
+.Rooms-div-btn {
+display: flex;
+flex-flow: row wrap;
+justify-content: space-between;
+align-items: center;
+}
 
 
 

@@ -3,7 +3,6 @@ import { DatePicker } from 'antd';
 import RoomCard from '@/components/RoomCard';
 import { usePageInfo } from "@/hooks/usePageInfo";
 import Introduction from "@/components/Introduction";
-import '@/css/rooms.css';
 
 function Rooms() {
     const URL = import.meta.env.VITE_API_URL;
