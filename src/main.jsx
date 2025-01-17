@@ -4,6 +4,7 @@ import { RouterProvider } from 'react-router-dom'
 import { router } from '@/lib/routes/routes'
 import { UserProvider } from '@/hooks/useUser.jsx'
 import '@/css/index.css'
+import '@/css/register.css'
 import { PageInfoProvider } from './hooks/usePageInfo'
 
 createRoot(document.getElementById('root')).render(
