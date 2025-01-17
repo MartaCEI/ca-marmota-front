@@ -12,7 +12,6 @@ function Booking() {
     const [totalNights, setTotalNights] = useState(0);
     const [totalAmount, setTotalAmount] = useState(0);
 
-
     useEffect(() => {
         fetchRoom();
     }, [roomId]);
