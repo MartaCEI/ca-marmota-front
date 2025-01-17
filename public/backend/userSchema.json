@@ -1,0 +1,53 @@
+[
+    {
+        "_id": {
+            "$oid": "675ff3bdb0ba6c5e9d2815af"
+        },
+        "name": "admin",
+        "username": "admin@mail.com",
+        "password": "$2b$10$1wbFmKEAie4VsXQlYoEq5eCTOpAb5Uh5oYvUMW9g/Z8LpEm/oqy2.",
+        "image": "https://picsum.photos/200",
+        "isAdmin": true,
+        "isDeleted": false,
+        "createdAt": {
+            "$date": "2024-12-16T09:32:45.717Z"
+        },
+        "updatedAt": {
+            "$date": "2024-12-16T09:32:45.717Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "675ff3e9b0ba6c5e9d282e07"
+        },
+        "name": "marta",
+        "username": "marta@gmail.com",
+        "password": "$2b$10$XA3MyY37Jsi4LIrGx3wXLumdRUSuO4F5qWHJ/S5uqP3yh4fRuqweG",
+        "image": "https://picsum.photos/200",
+        "isAdmin": false,
+        "isDeleted": false,
+        "createdAt": {
+            "$date": "2024-12-16T09:33:29.509Z"
+        },
+        "updatedAt": {
+            "$date": "2024-12-16T09:33:29.509Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "675ff50db0ba6c5e9d288de7"
+        },
+        "name": "Tomi",
+        "username": "tomi@gmail.com",
+        "password": "$2b$10$xWqgzB/.JWncJCjCa7Asfe7wcbTxYWDlVmQPy56zcRkzkaBv/hCFy",
+        "image": "https://picsum.photos/200",
+        "isAdmin": false,
+        "isDeleted": false,
+        "createdAt": {
+            "$date": "2024-12-16T09:38:21.926Z"
+        },
+        "updatedAt": {
+            "$date": "2024-12-16T09:38:21.926Z"
+        }
+    }
+]

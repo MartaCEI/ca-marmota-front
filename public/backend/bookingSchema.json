@@ -1,0 +1,209 @@
+[
+    {
+        "_id": {
+            "$oid": "675ff4a7b0ba6c5e9d288dcd"
+        },
+        "userId": {
+            "$oid": "675ff3bdb0ba6c5e9d2815af"
+        },
+        "roomId": {
+            "$oid": "67333a687346b034cb9c33cc"
+        },
+        "checkIn": "2025-01-01",
+        "checkOut": "2025-01-10",
+        "totalAmount": 450,
+        "totalNights": 9,
+        "transactionId": "895",
+        "status": "booked",
+        "createdAt": {
+            "$date": "2024-12-16T09:36:39.838Z"
+        },
+        "updatedAt": {
+            "$date": "2024-12-16T09:36:39.838Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "675ff573b0ba6c5e9d28edd0"
+        },
+        "userId": {
+            "$oid": "675ff50db0ba6c5e9d288de7"
+        },
+        "roomId": {
+            "$oid": "67333a687346b034cb9c33cd"
+        },
+        "checkIn": "2025-01-01",
+        "checkOut": "2025-01-10",
+        "totalAmount": 900,
+        "totalNights": 9,
+        "transactionId": "221",
+        "status": "booked",
+        "createdAt": {
+            "$date": "2024-12-16T09:40:03.882Z"
+        },
+        "updatedAt": {
+            "$date": "2024-12-16T09:40:03.882Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "675ff58eb0ba6c5e9d28f870"
+        },
+        "userId": {
+            "$oid": "675ff50db0ba6c5e9d288de7"
+        },
+        "roomId": {
+            "$oid": "67333a687346b034cb9c33cc"
+        },
+        "checkIn": "2024-12-18",
+        "checkOut": "2024-12-28",
+        "totalAmount": 500,
+        "totalNights": 10,
+        "transactionId": "944",
+        "status": "booked",
+        "createdAt": {
+            "$date": "2024-12-16T09:40:30.291Z"
+        },
+        "updatedAt": {
+            "$date": "2024-12-16T09:40:30.291Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "675ff59fb0ba6c5e9d28f873"
+        },
+        "userId": {
+            "$oid": "675ff50db0ba6c5e9d288de7"
+        },
+        "roomId": {
+            "$oid": "67333a687346b034cb9c33cc"
+        },
+        "checkIn": "2024-12-18",
+        "checkOut": "2024-12-28",
+        "totalAmount": 500,
+        "totalNights": 10,
+        "transactionId": "449",
+        "status": "cancelled",
+        "createdAt": {
+            "$date": "2024-12-16T09:40:47.509Z"
+        },
+        "updatedAt": {
+            "$date": "2024-12-16T09:43:55.118Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "675ff5dbb0ba6c5e9d290163"
+        },
+        "userId": {
+            "$oid": "675ff50db0ba6c5e9d288de7"
+        },
+        "roomId": {
+            "$oid": "67333a687346b034cb9c33cc"
+        },
+        "checkIn": "2024-12-25",
+        "checkOut": "2024-12-28",
+        "totalAmount": 150,
+        "totalNights": 3,
+        "transactionId": "460",
+        "status": "booked",
+        "createdAt": {
+            "$date": "2024-12-16T09:41:47.076Z"
+        },
+        "updatedAt": {
+            "$date": "2024-12-16T09:41:47.076Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67657c53aa6165b1bb7cc3d3"
+        },
+        "userId": {
+            "$oid": "675ff3bdb0ba6c5e9d2815af"
+        },
+        "roomId": {
+            "$oid": "67333a687346b034cb9c33ce"
+        },
+        "checkIn": "2024-12-28",
+        "checkOut": "2025-01-02",
+        "totalAmount": 300,
+        "totalNights": 5,
+        "transactionId": "523",
+        "status": "cancelled",
+        "createdAt": {
+            "$date": "2024-12-20T14:16:51.197Z"
+        },
+        "updatedAt": {
+            "$date": "2025-01-16T11:16:13.207Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6765b77eaa6165b1bb7cc441"
+        },
+        "userId": {
+            "$oid": "6765b74faa6165b1bb7cc438"
+        },
+        "roomId": {
+            "$oid": "67333a687346b034cb9c33cf"
+        },
+        "checkIn": "2024-12-30",
+        "checkOut": "2025-01-07",
+        "totalAmount": 640,
+        "totalNights": 8,
+        "transactionId": "376",
+        "status": "cancelled",
+        "createdAt": {
+            "$date": "2024-12-20T18:29:18.853Z"
+        },
+        "updatedAt": {
+            "$date": "2024-12-20T18:31:29.516Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67878c803f7633f855d96297"
+        },
+        "userId": {
+            "$oid": "675ff3bdb0ba6c5e9d2815af"
+        },
+        "roomId": {
+            "$oid": "67333a687346b034cb9c33cc"
+        },
+        "checkIn": "2025-01-18",
+        "checkOut": "2025-01-20",
+        "totalAmount": 100,
+        "totalNights": 2,
+        "transactionId": "981",
+        "status": "booked",
+        "createdAt": {
+            "$date": "2025-01-15T10:22:56.080Z"
+        },
+        "updatedAt": {
+            "$date": "2025-01-15T10:22:56.080Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6787f79d17cb1d10ac0874e3"
+        },
+        "userId": {
+            "$oid": "675ff3e9b0ba6c5e9d282e07"
+        },
+        "roomId": {
+            "$oid": "67333a687346b034cb9c33cd"
+        },
+        "checkIn": "2025-01-18",
+        "checkOut": "2025-01-21",
+        "totalAmount": 300,
+        "totalNights": 3,
+        "transactionId": "154",
+        "status": "booked",
+        "createdAt": {
+            "$date": "2025-01-15T17:59:57.797Z"
+        },
+        "updatedAt": {
+            "$date": "2025-01-15T17:59:57.797Z"
+        }
+    }
+]
